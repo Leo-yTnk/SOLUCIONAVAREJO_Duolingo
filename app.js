@@ -63,6 +63,19 @@
     }).join("");
   }
 
+  function centerActiveDay() {
+    var scroller = $("dayTabs");
+    var selected = scroller.querySelector('[aria-current="true"]');
+    if (!selected || !scroller.scrollTo) return;
+    var parentRect = scroller.getBoundingClientRect();
+    var itemRect = selected.getBoundingClientRect();
+    var center = scroller.scrollLeft + itemRect.left - parentRect.left -
+      (scroller.clientWidth - itemRect.width) / 2;
+    var reducedMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    scroller.scrollTo({ left: Math.max(0, center), behavior: reducedMotion ? "auto" : "smooth" });
+  }
+
   function renderHero(r) {
     document.documentElement.style.setProperty("--accent", r.cor);
     document.documentElement.style.setProperty("--accent-ink", r.escura);
@@ -75,6 +88,7 @@
     $("recipeDifficulty").textContent = "✨ " + r.dificuldade;
     $("heroFlag").textContent = r.bandeira;
     $("heroFood").textContent = r.emoji;
+    $("heroArtDay").textContent = "dia " + r.dia;
     document.querySelector(".hero-art").setAttribute("aria-label", "Prato " + r.titulo + ", tema " + r.pais);
     $("productName").textContent = r.produto;
     $("productNote").textContent = r.produtoNota;
@@ -140,6 +154,7 @@
     if (!next) next = receitas[0];
     ativa = next;
     renderTabs();
+    centerActiveDay();
     renderHero(next);
     markList(next);
     renderSteps(next);
