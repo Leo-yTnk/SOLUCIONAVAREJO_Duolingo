@@ -24,7 +24,8 @@
         </span>
       </a>
       <div class="header-actions">
-        <span class="streak" id="headerCount" aria-label="Lições concluídas">⭐ 0 de 7 lições</span>
+        <span class="streak" id="headerCount" aria-label="Lições concluídas">⭐ 0/7 lições</span>
+        <span class="xp-pill" id="xpCount" aria-label="Experiência ilustrativa acumulada">⚡ 0 XP</span>
       </div>
     </div>
   </header>
@@ -164,19 +165,31 @@
             </div>
           </div>
           <div class="quiz-card" aria-labelledby="quizTitle">
-            <span class="quiz-label">✨ Miniatividade · 1 pergunta</span>
+            <div class="quiz-status"><span class="quiz-label">LIÇÃO <span id="quizDay">1</span> DE 7</span><span class="quiz-xp">⚡ +20 XP</span></div>
+            <div class="quiz-mini-track" aria-hidden="true"><span id="quizMiniProgress"></span></div>
+            <p class="quiz-prompt">Escolha uma alternativa e confirme sua resposta.</p>
             <h3 id="quizTitle"></h3>
             <div class="quiz-options" id="quizOptions" role="group" aria-label="Alternativas da miniatividade"></div>
+            <button type="button" class="button button-primary verify-answer" id="verifyAnswer" disabled>Verificar resposta</button>
             <div id="quizFeedback" role="status" aria-live="polite" hidden></div>
             <div class="reward" id="couponReward" hidden>
-              <p class="reward-title">🎉 Lição concluída!</p>
+              <div class="celebration" aria-hidden="true"><span>✦</span><span>✳</span><span>✦</span><span>✳</span><span>✦</span></div>
+              <span class="reward-trophy" aria-hidden="true">🏆</span>
+              <p class="reward-title">Lição concluída!</p>
+              <p class="reward-points">+20 XP · 1 carimbo conquistado</p>
               <p>Você conquistou um carimbo no passaporte. Confira a mecânica de cupom proposta para a campanha:</p>
               <div class="reward-code" aria-label="Código demonstrativo DUOSABOR">DUOSABOR</div>
               <p><strong>Proposta:</strong> 10% de desconto em uma unidade do produto do dia, limitado a R$ 5. Validade sugerida: 48 horas; um uso por cliente por dia, sem acúmulo. <strong>Código ilustrativo, não resgatável.</strong> Ativação sujeita à aprovação de marca, margem e regras comerciais.</p>
-              <button type="button" class="button button-outline" id="copyCoupon">Copiar código ilustrativo</button>
+              <div class="reward-actions"><button type="button" class="button button-outline" id="copyCoupon">Copiar código ilustrativo</button>
+              <button type="button" class="button button-primary" id="rewardNextDay">Próximo destino →</button></div>
             </div>
           </div>
         </div>
+        <section class="stamps-section" id="passaporte" aria-labelledby="stampsTitle">
+          <div class="stamps-heading"><div><p class="section-label">Sua coleção de conquistas</p><h3 id="stampsTitle">passaporte de sabores</h3></div><span id="stampsProgress" class="stamps-total">0/7 carimbos</span></div>
+          <div class="stamp-grid" id="stampGrid" aria-label="Carimbos dos sete países"></div>
+          <p class="stamps-note">Cada resposta certa rende 20 XP e um carimbo neste passaporte ilustrativo. Não são XP oficiais do Duolingo.</p>
+        </section>
         <p class="disclaimer">Este é um projeto acadêmico independente, e não uma parceria oficial entre Swift e Duolingo. As miniatividades foram criadas para esta demonstração, não são lições oficiais. Receitas inspiradas em países, com adaptações culinárias; expressões e usos culturais podem ser revisados por especialistas antes de uma campanha real.</p>
       </div>
     </section>
@@ -203,7 +216,7 @@
         <strong>7 dias, 7 cortes, 7 lições</strong>
         <p>Proposta acadêmica de campanha para a categoria de aves da Swift. Marcas e produtos pertencem aos respectivos titulares. Cupons, aprovações e parcerias são hipotéticos. Informações dos produtos: <a href="https://www.swift.com.br/aves" target="_blank" rel="noopener noreferrer">catálogo oficial da Swift</a>.</p>
       </div>
-      <a class="back-top" href="#topo">↑ Voltar ao início</a>
+      <a class="back-top" href="#inicio">↑ Voltar ao início</a>
     </div>
   </footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
