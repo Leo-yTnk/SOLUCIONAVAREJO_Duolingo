@@ -1,0 +1,13 @@
+{
+  "name": "sete-dias-sete-sabores",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Demonstração acadêmica Swift × Duolingo — receitas, idiomas e passaporte",
+  "scripts": {
+    "test:content": "node tests/smoke.test.cjs",
+    "test:ui": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+}
