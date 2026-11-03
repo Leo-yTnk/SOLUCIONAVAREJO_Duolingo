@@ -504,3 +504,8 @@ section { scroll-margin-top: 78px; }
   .quiz-mini-track span {transition:none;}
   .stamp-item {transition:none;}
 }
+
+/* Só uma compensação de cabeçalho: scroll-margin dos destinos.
+   A combinação anterior com scroll-padding somava dois deslocamentos. */
+html {scroll-padding-top:0;}
+@media(max-width:680px) {html {scroll-padding-top:0;}}
