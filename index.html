@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#593f86">
+  <meta name="description" content="7 dias, 7 cortes, 7 lições. Viaje por sete países com receitas de frango Swift e miniatividades de idiomas. Proposta acadêmica conceitual.">
+  <title>7 dias, 7 cortes, 7 lições | Swift × Duolingo — conceito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="./" aria-label="Voltar ao início da campanha">
+        <span class="logo-icon" aria-hidden="true">🍃</span>
+        <span>
+          <span class="logo-word">swift <span>×</span> duolingo</span>
+          <span class="logo-caption" style="display:block">Conceito acadêmico</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <span class="streak" id="headerCount" aria-label="Lições concluídas">⭐ 0 de 7 lições</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="page-intro" aria-labelledby="introTitle">
+      <div class="container intro-content">
+        <div>
+          <p class="section-label">Uma viagem de sabores</p>
+          <h1 id="introTitle">7 dias. 7 cortes. 7 lições.</h1>
+          <p>Descubra receitas com frango inspiradas em diferentes países. Prepare o prato, aprenda uma expressão e complete seu passaporte de sabores.</p>
+        </div>
+        <div class="overall-progress" aria-label="Progresso da campanha">
+          <div class="progress-meta"><span>Seu passaporte</span><strong id="progressText">0 / 7</strong></div>
+          <div class="progress-track" role="progressbar" aria-label="Lições concluídas" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" id="progressTrack"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="daybar" aria-label="Escolha um dos sete dias da campanha">
+      <div class="container daybar-inner" id="dayTabs"></div>
+    </nav>
+
+    <section class="hero" id="topo" aria-labelledby="recipeTitle">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow" id="countryBadge">🇫🇷 Dia 1 · França</span>
+          <h2 id="recipeTitle">Frango Bourguignon</h2>
+          <p class="hero-lead" id="recipeTagline">Um clássico francês em versão de frango.</p>
+          <p class="hero-description" id="recipeDescription"></p>
+          <div class="hero-chips" aria-label="Informações da receita">
+            <span class="chip" id="recipeTime">⏱️ 65 min</span>
+            <span class="chip" id="recipePortions">🍽️ 4 porções</span>
+            <span class="chip" id="recipeDifficulty">✨ Intermediário</span>
+          </div>
+          <div class="hero-buttons">
+            <a class="button button-primary" href="#ingredientes">Ver receita <span aria-hidden="true">↓</span></a>
+            <a class="button button-light" href="#idioma">Aprender idioma <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="hero-art" role="img" aria-label="Ilustração gastronômica temática">
+          <span id="heroFlag" class="art-flag" aria-hidden="true">🇫🇷</span>
+          <span id="heroFood" class="food-icon" aria-hidden="true">🍲</span>
+          <span class="art-sticker">BOM<br>SABOR!</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="ingredientes" aria-labelledby="recipeSectionTitle">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-label">Hora de cozinhar</p>
+          <h2 id="recipeSectionTitle">A receita do dia</h2>
+          <p>Todos os ingredientes e o passo a passo para você preparar seu prato.</p>
+        </div>
+        <div class="product-banner">
+          <div>
+            <p class="product-label">🛒 Produto Swift do dia</p>
+            <p class="product-title" id="productName">Filé de Coxa e Sobrecoxa sem Pele Swift 1 kg</p>
+            <p class="product-note" id="productNote"></p>
+          </div>
+          <a class="button button-outline" id="productLink" target="_blank" rel="noopener noreferrer" href="https://www.swift.com.br/aves">Ver na Swift <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="recipe-grid">
+          <article class="panel" aria-labelledby="ingredientsTitle">
+            <div class="panel-header">
+              <h3 id="ingredientsTitle">Ingredientes</h3>
+              <p>Marque o que já separou para cozinhar.</p>
+            </div>
+            <ul class="ingredient-list" id="ingredientList"></ul>
+            <p class="ingredient-counter" id="ingredientCount">0 de 0 ingredientes separados</p>
+          </article>
+          <article class="panel prep-panel" aria-labelledby="preparationTitle">
+            <div class="panel-header">
+              <h3 id="preparationTitle">Modo de preparo</h3>
+              <p>Passo a passo simples, na ordem certa.</p>
+            </div>
+            <ol class="step-list" id="stepsList"></ol>
+          </article>
+        </div>
+        <aside class="safety" aria-label="Aviso de segurança alimentar">
+          <span aria-hidden="true">🌡️</span>
+          <p>Segurança na cozinha: descongele o frango sob refrigeração e cozinhe completamente, até atingir 74 °C na parte mais espessa. Para produtos prontos ou pré-preparados, siga as instruções da embalagem.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="lesson" id="idioma" aria-labelledby="lessonTitle">
+      <div class="container">
+        <div class="lesson-layout">
+          <div>
+            <p class="section-label">Palavras do mundo</p>
+            <h2 id="lessonTitle">Um pouco de francês...</h2>
+            <p class="lesson-lead">O sabor fica ainda melhor quando você aprende algo novo.</p>
+            <div class="vocab-cards" id="vocabList"></div>
+            <div class="speech">
+              <small>Experimente dizer</small>
+              <p id="languagePhrase"></p>
+              <em id="languageTranslation"></em>
+            </div>
+          </div>
+          <div class="quiz-card" aria-labelledby="quizTitle">
+            <span class="quiz-label">✨ Miniatividade · 1 pergunta</span>
+            <h3 id="quizTitle"></h3>
+            <div class="quiz-options" id="quizOptions" role="group" aria-label="Alternativas da miniatividade"></div>
+            <div id="quizFeedback" role="status" aria-live="polite" hidden></div>
+            <div class="reward" id="couponReward" hidden>
+              <p class="reward-title">🎉 Lição concluída!</p>
+              <p>Você conquistou um carimbo no passaporte. Confira a mecânica de cupom proposta para a campanha:</p>
+              <div class="reward-code" aria-label="Código demonstrativo DUOSABOR">DUOSABOR</div>
+              <p><strong>Proposta:</strong> 10% de desconto em uma unidade do produto do dia, limitado a R$ 5. Validade sugerida: 48 horas; um uso por cliente por dia, sem acúmulo. <strong>Código ilustrativo, não resgatável.</strong> Ativação sujeita à aprovação de marca, margem e regras comerciais.</p>
+              <button type="button" class="button button-outline" id="copyCoupon">Copiar código ilustrativo</button>
+            </div>
+          </div>
+        </div>
+        <p class="disclaimer">Este é um projeto acadêmico independente, e não uma parceria oficial entre Swift e Duolingo. As miniatividades foram criadas para esta demonstração, não são lições oficiais. Receitas inspiradas em países, com adaptações culinárias; expressões e usos culturais podem ser revisados por especialistas antes de uma campanha real.</p>
+      </div>
+    </section>
+
+    <section class="after-lesson" aria-label="Navegação e compartilhamento">
+      <div class="container">
+        <div class="bottom-nav">
+          <button type="button" class="button button-outline" id="prevDay">← Dia anterior</button>
+          <button type="button" class="button button-outline" id="shareRecipe">Compartilhar receita ↗</button>
+          <button type="button" class="button button-primary" id="nextDay">Próximo sabor →</button>
+        </div>
+        <p class="bottom-note">Você pode explorar todos os dias no seu ritmo. O passaporte fica salvo somente neste navegador, sem cadastro.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>7 dias, 7 cortes, 7 lições</strong>
+        <p>Proposta acadêmica de campanha para a categoria de aves da Swift. Marcas e produtos pertencem aos respectivos titulares. Cupons, aprovações e parcerias são hipotéticos. Informações dos produtos: <a href="https://www.swift.com.br/aves" target="_blank" rel="noopener noreferrer">catálogo oficial da Swift</a>.</p>
+      </div>
+      <a class="back-top" href="#topo">↑ Voltar ao início</a>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <noscript>Ative o JavaScript para navegar pelas sete receitas e miniatividades.</noscript>
+</body>
+</html>
