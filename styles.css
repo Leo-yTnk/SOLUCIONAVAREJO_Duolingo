@@ -429,3 +429,78 @@ section { scroll-margin-top: 78px; }
 @media(prefers-reduced-motion:reduce) {
   .passport-cover,.floating-recipe {animation:none!important;}
 }
+
+
+/* Jornada gamificada — feedback claro, recompensa e navegação sem retorno ao topo. */
+#sabores, #passaporte, #topo, #ingredientes, #idioma, #como-funciona {scroll-margin-top:88px;}
+.xp-pill {display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;border-radius:17px;padding:7px 13px;background:#fff5dc;border:2px solid #ffe6ad;color:#995a00;font-size:13px;font-weight:900;line-height:1.15;}
+.quiz-status {display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.quiz-xp {padding:6px 11px;border-radius:999px;background:#fff3d3;color:#8a5300;font-weight:900;font-size:13px;letter-spacing:.01em;}
+.quiz-mini-track {height:10px;border-radius:100px;background:#e8e8e8;border:1px solid #ddd;overflow:hidden;margin:15px 0 14px;}
+.quiz-mini-track span {display:block;width:20%;height:100%;background:#58cc02;border-radius:100px;transition:width .3s ease;}
+.quiz-prompt {font-size:13px;color:#777;line-height:1.4;font-weight:800;margin-top:4px;}
+.quiz-option.selected {border-color:#1cb0f6;background:#e9f7ff;box-shadow:0 4px #84d8fb;color:#135778;}
+.quiz-option.selected .option-letter {background:#c9eefe;border-color:#1cb0f6;}
+.quiz-option:active:not(:disabled) {transform:translateY(2px);box-shadow:0 2px #d4ccde;}
+.verify-answer {width:100%;margin-top:20px;text-transform:uppercase;letter-spacing:.05em;font-size:14px;}
+.verify-answer:disabled {background:#e5e5e5;box-shadow:0 4px #cfcfcf;color:#777;opacity:1;}
+.quiz-feedback {font-size:14px;line-height:1.5;}
+.reward {position:relative;overflow:hidden;border:2px solid #b6e69a;background:#f6ffed;padding:24px 19px;animation:reward-appear .35s ease both;}
+.reward-title {font-size:27px;color:#316c09;margin:4px 0 5px;}
+.reward-points {display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:#ddf9bd;color:#39770c;font-size:15px;font-weight:900;padding:9px 13px;margin:7px 0 12px !important;}
+.reward-trophy {font-size:48px;line-height:1;display:block;filter:drop-shadow(0 4px 0 #b5e8a5);}
+.reward-code {color:#4b3d60;background:#fff;border:2px dashed #c5bcce;font-size:24px;}
+.reward-actions {display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:12px;}
+.reward-actions .button {min-width:170px;flex:1 1 180px;padding-inline:13px;}
+.celebration {position:absolute;inset:5px 4px auto;display:flex;align-items:center;justify-content:space-between;pointer-events:none;color:#eab44f;font-size:22px;opacity:.92;}
+.celebration span:nth-child(2n) {color:#85ce4d;transform:rotate(20deg);}
+.celebration span:nth-child(3) {color:#1cb0f6;transform:rotate(-20deg);}
+.stamps-section {margin-top:30px;background:rgba(255,255,255,.12);border:2px dashed rgba(255,255,255,.27);border-radius:25px;padding:25px 23px 23px;scroll-margin-top:88px;}
+.stamps-heading {display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:20px;}
+.stamps-heading h3 {color:white;font-size:clamp(24px,3vw,35px);margin:7px 0 0;line-height:1.1;}
+.stamps-total {border-radius:999px;background:#ffffff27;border:1px solid #ffffff48;color:#fff;font-weight:900;font-size:13px;padding:7px 13px;white-space:nowrap;}
+.stamp-grid {display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px;}
+.stamp-item {min-width:0;min-height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border-radius:16px;background:#ffffff12;border:2px dashed #ffffff4b;color:#eee4f7;padding:9px 4px;transition:transform .15s,border-color .15s,background .15s;}
+.stamp-symbol {font-size:32px;filter:grayscale(1);opacity:.7;line-height:1.25;}
+.stamp-name {font-size:12px;font-weight:900;line-height:1.15;text-align:center;word-break:normal;overflow-wrap:break-word;}
+.stamp-state {font-size:10px;line-height:1.25;color:#d9c7e7;font-weight:800;}
+.stamp-item.earned {background:#f5ffea;border-style:solid;border-color:#a6ea78;color:#356e0f;box-shadow:0 3px #3d8054;}
+.stamp-item.earned .stamp-symbol {filter:none;opacity:1;}
+.stamp-item.earned .stamp-state {color:#42791d;}
+.stamp-item.active {border-color:#fff;outline:2px solid #d4bbef;outline-offset:2px;}
+.stamp-item:hover {transform:translateY(-3px);border-color:#fff;}
+.stamps-note {margin-top:17px;color:#e6d6f3;font-size:12px;line-height:1.5;}
+@keyframes reward-appear {from {opacity:0;transform:translateY(10px) scale(.98)}to {opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:900px) {
+  .stamp-grid {grid-template-columns:repeat(4,minmax(0,1fr));}
+}
+@media(max-width:680px) {
+  #sabores,#passaporte,#topo,#ingredientes,#idioma,#como-funciona {scroll-margin-top:73px;}
+  .header-actions {gap:5px;}
+  #headerCount {display:none;}
+  .xp-pill {font-size:11px;padding:7px 9px;border-width:1px;}
+  .quiz-status {gap:7px;}
+  .quiz-card h3 {margin-top:14px;}
+  .quiz-prompt {font-size:12px;}
+  .quiz-option {min-height:55px;line-height:1.35;}
+  .verify-answer {min-height:52px;}
+  .reward {padding:23px 13px;}
+  .reward-title {font-size:25px;}
+  .reward-code {font-size:21px;}
+  .reward-actions .button {flex:1 1 100%;min-height:48px;}
+  .stamps-section {padding:20px 14px;border-radius:20px;margin-top:24px;}
+  .stamps-heading {align-items:flex-start;gap:9px;margin-bottom:16px;}
+  .stamps-heading h3 {font-size:24px;}
+  .stamps-total {font-size:11px;padding:6px 9px;}
+  .stamp-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+  .stamp-item {min-height:98px;padding:7px 4px;gap:4px;border-radius:12px;}
+  .stamp-symbol {font-size:29px;}
+  .stamp-name {font-size:11px;}
+  .stamp-state {font-size:10px;}
+  .stamps-note {font-size:11px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .reward {animation:none;}
+  .quiz-mini-track span {transition:none;}
+  .stamp-item {transition:none;}
+}
