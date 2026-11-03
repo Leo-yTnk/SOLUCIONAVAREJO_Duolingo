@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#593f86">
+  <meta name="theme-color" content="#58cc02">
   <meta name="description" content="7 dias, 7 cortes, 7 lições. Viaje por sete países com receitas de frango Swift e miniatividades de idiomas. Proposta acadêmica conceitual.">
   <title>7 dias, 7 cortes, 7 lições | Swift × Duolingo — conceito</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="./" aria-label="Voltar ao início da campanha">
-        <span class="logo-icon" aria-hidden="true">🍃</span>
+        <span class="logo-icon" aria-hidden="true">✦</span>
         <span>
           <span class="logo-word">swift <span>×</span> duolingo</span>
           <span class="logo-caption" style="display:block">Conceito acadêmico</span>
@@ -30,21 +30,58 @@
   </header>
 
   <main id="conteudo">
-    <section class="page-intro" aria-labelledby="introTitle">
-      <div class="container intro-content">
-        <div>
-          <p class="section-label">Uma viagem de sabores</p>
-          <h1 id="introTitle">7 dias. 7 cortes. 7 lições.</h1>
-          <p>Descubra receitas com frango inspiradas em diferentes países. Prepare o prato, aprenda uma expressão e complete seu passaporte de sabores.</p>
+
+    <section class="campaign-hero" id="inicio" aria-labelledby="introTitle">
+      <div class="container campaign-layout">
+        <div class="campaign-copy">
+          <span class="campaign-kicker"><span class="kicker-dot" aria-hidden="true"></span> Uma viagem por sete sabores</span>
+          <h1 id="introTitle"><span>7 dias.</span><span>7 cortes.</span><span>7 lições.</span></h1>
+          <p class="campaign-lead">O mundo inteiro cabe no seu prato.</p>
+          <p class="campaign-description">Uma experiência para descobrir sete países, preparar receitas com frango e aprender uma expressão nova a cada dia.</p>
+          <div class="campaign-actions">
+            <a class="button button-campaign" href="#sabores">Explorar os sabores <span aria-hidden="true">↓</span></a>
+            <a class="button button-campaign-secondary" href="#como-funciona">Como funciona <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="campaign-progress" aria-label="Seu progresso na campanha">
+            <div class="progress-meta"><span>Seu passaporte de sabores</span><strong id="progressText">0 / 7</strong></div>
+            <div class="progress-track" role="progressbar" aria-label="Lições concluídas" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" id="progressTrack"><div class="progress-fill" id="progressFill"></div></div>
+          </div>
         </div>
-        <div class="overall-progress" aria-label="Progresso da campanha">
-          <div class="progress-meta"><span>Seu passaporte</span><strong id="progressText">0 / 7</strong></div>
-          <div class="progress-track" role="progressbar" aria-label="Lições concluídas" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" id="progressTrack"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="passport-showcase" aria-label="Passaporte ilustrativo com carimbos dos sete países">
+          <span class="hero-spark hero-spark-one" aria-hidden="true">✦</span>
+          <span class="hero-spark hero-spark-two" aria-hidden="true">✦</span>
+          <div class="passport-cover" aria-hidden="true">
+            <div class="passport-cover-top"><span class="passport-seal">✳</span><span>PASSAPORTE<br>DE SABORES</span></div>
+            <div class="passport-plate"><span>🍲</span><span class="passport-mini-flag">🇫🇷</span></div>
+            <div class="passport-stamps"><span>🇫🇷</span><span>🇯🇵</span><span>🇲🇽</span><span>🇮🇳</span><span>🇮🇹</span><span>🇹🇭</span><span>🇵🇹</span></div>
+            <div class="passport-foot">SWIFT × DUOLINGO <span>EDIÇÃO CONCEITUAL</span></div>
+          </div>
+          <div class="floating-recipe floating-recipe-one" aria-hidden="true"><span>🌮</span><strong>dia 3</strong><small>México</small></div>
+          <div class="floating-recipe floating-recipe-two" aria-hidden="true"><span>🍛</span><strong>dia 4</strong><small>Índia</small></div>
         </div>
       </div>
     </section>
 
-    <nav class="daybar" aria-label="Escolha um dos sete dias da campanha">
+    <section class="how-section" id="como-funciona" aria-labelledby="howTitle">
+      <div class="container">
+        <div class="how-heading">
+          <div>
+            <p class="section-label">Pequenos desafios, grandes descobertas</p>
+            <h2 id="howTitle">uma viagem em 3 passos</h2>
+          </div>
+          <p>Não precisa de cadastro nem saber outro idioma. É só escolher seu destino e começar.</p>
+        </div>
+        <div class="how-grid">
+          <article class="how-card"><span class="how-number">01</span><span class="how-emoji" aria-hidden="true">🌍</span><h3>escolha um país</h3><p>Explore um destino por dia e descubra o corte de frango Swift que combina com a receita.</p></article>
+          <article class="how-card"><span class="how-number">02</span><span class="how-emoji" aria-hidden="true">🍽️</span><h3>prepare o prato</h3><p>Veja ingredientes, confira o passo a passo e marque o que já separou para cozinhar.</p></article>
+          <article class="how-card"><span class="how-number">03</span><span class="how-emoji" aria-hidden="true">📚</span><h3>aprenda e avance</h3><p>Descubra novas expressões, acerte uma pergunta e ganhe um carimbo no passaporte.</p></article>
+        </div>
+        <p class="how-disclaimer"><span aria-hidden="true">✳</span> Campanha acadêmica conceitual. A experiência de receitas e idiomas funciona aqui; cupons e parceria comercial ainda não são reais.</p>
+      </div>
+    </section>
+
+    <nav class="daybar" id="sabores" aria-label="Escolha um dos sete dias da campanha">
+      <div class="container daybar-heading"><div><span class="section-label">Seu próximo destino</span><h2>escolha seu sabor</h2></div><span class="swipe-hint">Deslize para explorar <span aria-hidden="true">↔</span></span></div>
       <div class="container daybar-inner" id="dayTabs"></div>
     </nav>
 
@@ -65,10 +102,10 @@
             <a class="button button-light" href="#idioma">Aprender idioma <span aria-hidden="true">↗</span></a>
           </div>
         </div>
-        <div class="hero-art" role="img" aria-label="Ilustração gastronômica temática">
+        <div class="hero-art" role="img" aria-label="Prato ilustrado da receita selecionada">
           <span id="heroFlag" class="art-flag" aria-hidden="true">🇫🇷</span>
           <span id="heroFood" class="food-icon" aria-hidden="true">🍲</span>
-          <span class="art-sticker">BOM<br>SABOR!</span>
+          <span class="art-sticker"><small>receita do</small><strong id="heroArtDay">dia 1</strong></span>
         </div>
       </div>
     </section>
@@ -155,6 +192,11 @@
       </div>
     </section>
   </main>
+  <nav class="mobile-quickbar" aria-label="Atalhos de navegação">
+    <a href="#sabores"><span aria-hidden="true">🌍</span> Países</a>
+    <a href="#ingredientes"><span aria-hidden="true">🍽️</span> Receita</a>
+    <a href="#idioma"><span aria-hidden="true">📚</span> Lição</a>
+  </nav>
   <footer class="footer">
     <div class="container footer-inner">
       <div>
