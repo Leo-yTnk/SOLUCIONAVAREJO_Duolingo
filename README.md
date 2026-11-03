@@ -9,13 +9,17 @@ Site estático de **demonstração acadêmica** da proposta de campanha **Swift 
 - Sete países, sete receitas completas e sete produtos Swift, conforme o roteiro da apresentação.
 - Ingredientes com checklist, preparo em etapas e ficha oficial do produto do dia.
 - Três expressões por país e miniatividade de idioma com feedback.
-- Passaporte de progresso salvo localmente no navegador.
+- Passaporte de progresso salvo localmente no navegador, agora com **sete carimbos interativos**.
+- Miniatividade com **selecionar → verificar → receber feedback**, permitindo novas tentativas sem penalidade.
+- **20 XP ilustrativos por lição**, exibidos no cabeçalho e acumulados sem repetição; não são XP oficiais.
+- Navegação entre países e botões Próximo/Anterior levando ao **início da nova receita**, sem retornar ao hero geral da campanha.
+- Botão **Próximo destino** na recompensa que continua a experiência para a próxima receita.
 - Código DUOSABOR *demonstrativo*, que não concede descontos reais.
 - Hero principal com passaporte ilustrado, chamada para ação e progresso visível.
 - Seção **Uma viagem em 3 passos**, explicando como selecionar o destino, preparar a receita e aprender o idioma.
 - Interface responsiva com navegação horizontal entre países e **atalhos inferiores** no celular.
 - Navegação acessível, contraste revisado e respeito ao movimento reduzido.
-- Verificações automáticas de sintaxe, conteúdo, fluxo funcional e layouts de 320, 390, 768 e 1280 px.
+- Verificações automáticas de sintaxe, conteúdo, **rolagem entre dias**, XP, fluxo de quiz e layouts de 320, 390, 768 e 1280 px.
 
 ## Roteiro dos sete sabores
 
