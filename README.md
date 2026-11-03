@@ -11,8 +11,11 @@ Site estático de **demonstração acadêmica** da proposta de campanha **Swift 
 - Três expressões por país e miniatividade de idioma com feedback.
 - Passaporte de progresso salvo localmente no navegador.
 - Código DUOSABOR *demonstrativo*, que não concede descontos reais.
-- Interface responsiva, navegação acessível e respeito ao movimento reduzido.
-- Verificações automáticas de sintaxe, países, produtos e quizzes.
+- Hero principal com passaporte ilustrado, chamada para ação e progresso visível.
+- Seção **Uma viagem em 3 passos**, explicando como selecionar o destino, preparar a receita e aprender o idioma.
+- Interface responsiva com navegação horizontal entre países e **atalhos inferiores** no celular.
+- Navegação acessível, contraste revisado e respeito ao movimento reduzido.
+- Verificações automáticas de sintaxe, conteúdo, fluxo funcional e layouts de 320, 390, 768 e 1280 px.
 
 ## Roteiro dos sete sabores
 
@@ -30,17 +33,24 @@ Site estático de **demonstração acadêmica** da proposta de campanha **Swift 
 
 As receitas são **adaptações autorais inspiradas em cada país**, não reproduções tradicionais. Para aves cruas, atinja 74 °C no centro do corte; observe também o modo de preparo e as condições de conservação do rótulo de cada produto.
 
-## Figma e fontes
+## Figma, diretrizes e fontes
 
-O Figma orientou a composição: topo lilás, ingredientes em card branco, preparo sobre fundo lilás claro e área de idioma em roxo escuro. Essa estrutura foi expandida em um site com sete dias acessíveis por navegação superior.
+A primeira versão derivou a hierarquia da página de receita no [Figma](https://www.figma.com/proto/jlzlceOCXM7HSCaxBljV8W/Untitled?node-id=4-11): ingredientes, modo de preparo e miniatividade de idioma. A revisão de layout acrescentou um **hero verde** com passaporte de sabores, uma seção de explicação em três passos e navegação responsiva.
 
-- **Títulos:** CSS prioriza Feather Bold, tenta o carregamento externo e recorre a Nunito quando indisponível. O arquivo Feather fornecido para análise não foi republicado: seu arquivo contém restrição de incorporação. Para **garantia absoluta** em um site público será necessária licença web apropriada e hospedagem autorizada.
-- **Corpo:** Nunito, do [Google Fonts](https://fonts.google.com/specimen/Nunito).
-- **Recursos visuais:** elementos do CSS e emojis temáticos, sem redistribuição dos assets temporários do Figma.
+O redesign foi baseado nas diretrizes e nos artigos públicos sobre design do Duolingo:
+
+- **Verde da marca #58CC02**, utilizado como cor principal; roxo como apoio à identidade da campanha.
+- **Títulos curtos e expressivos**, espaçamento consistente e hierarquia clara.
+- **Nunito do Google Fonts para títulos e corpo**: é a fonte substituta oficialmente recomendada quando as fontes proprietárias não estão disponíveis.
+- A Feather Bold é exclusiva do Duolingo segundo o próprio guia; o arquivo TTF fornecido e uma cópia não licenciada disponibilizada por terceiro **não são distribuídos nem carregados por este site**.
+- Elementos gráficos originais em CSS e emojis como apoio visual, sem imitar mascotes oficiais nem redistribuir assets temporários do Figma.
+- **Mobile-first:** hero adaptável, cards explicativos deslizáveis, seleção horizontal de países, áreas de toque amplas e barra de atalhos fixa.
+
+Referências: [Duolingo – Typography](https://design.duolingo.com/identity/typography); [Duolingo Blog – Core tabs redesign](https://blog.duolingo.com/core-tabs-redesign/); [Nunito – Google Fonts](https://fonts.google.com/specimen/Nunito).
 
 ## Executar e publicar
 
-O site não tem backend, build nem dependências de JavaScript.
+O site de produção não tem backend nem build. A suíte opcional de testes visuais usa Playwright.
 
 1. Clone ou baixe este repositório.
 2. Abra o arquivo index.html no navegador, ou inicie um servidor estático com o comando python -m http.server 8000.
@@ -55,7 +65,15 @@ node --check app.js
 node tests/smoke.test.cjs
 ~~~
 
-O GitHub Actions valida automaticamente o código quando há alterações na branch principal.
+Para executar os testes em navegador (é necessário Node.js):
+
+~~~bash
+npm install
+npx playwright install chromium
+npm run test:ui
+~~~
+
+O GitHub Actions valida automaticamente o conteúdo e executa os testes de navegação e responsividade em Chromium, anexando screenshots ao relatório de execução.
 
 ### Publicação via GitHub Pages
 
