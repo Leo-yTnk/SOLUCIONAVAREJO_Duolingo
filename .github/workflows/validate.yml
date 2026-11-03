@@ -1,0 +1,23 @@
+name: Verificar site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verificar sintaxe de JavaScript
+        run: |
+          node --check data.js
+          node --check app.js
+      - name: Verificar as sete receitas
+        run: node tests/smoke.test.cjs
