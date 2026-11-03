@@ -34,6 +34,7 @@
   concluidas = concluidas.filter(function (id) { return receitas.some(function (r) { return r.id === id; }); });
 
   var ativa = receitas[0];
+  var selectedAnswer = null;
 
   function toast(texto) {
     var node = $("toast");
@@ -46,7 +47,8 @@
   function progress() {
     var n = concluidas.length;
     $("progressText").textContent = n + " / 7";
-    $("headerCount").textContent = "⭐ " + n + " de 7 lições";
+    $("headerCount").textContent = "⭐ " + n + "/7 lições";
+    $("xpCount").textContent = "⚡ " + (n * 20) + " XP";
     $("progressTrack").setAttribute("aria-valuenow", String(n));
     $("progressFill").style.width = (n / 7 * 100) + "%";
   }
@@ -74,6 +76,34 @@
     var reducedMotion = window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     scroller.scrollTo({ left: Math.max(0, center), behavior: reducedMotion ? "auto" : "smooth" });
+  }
+
+  function renderStamps() {
+    $("stampsProgress").textContent = concluidas.length + "/7 carimbos";
+    $("stampGrid").innerHTML = receitas.map(function (r) {
+      var earned = concluidas.includes(r.id);
+      var isCurrent = ativa.id === r.id;
+      return '<button type="button" data-stamp="' + esc(r.id) + '" class="stamp-item' +
+        (earned ? ' earned' : '') + (isCurrent ? ' active' : '') +
+        '" aria-label="' + esc(r.pais) + ', dia ' + r.dia +
+        (earned ? ', lição concluída' : ', lição pendente') +
+        (isCurrent ? ', selecionado' : '') + '">' +
+        '<span class="stamp-symbol" aria-hidden="true">' + (earned ? r.bandeira : '☆') + '</span>' +
+        '<span class="stamp-name">' + esc(r.pais) + '</span>' +
+        '<span class="stamp-state">' + (earned ? 'Concluído ✓' : 'Dia ' + r.dia) + '</span></button>';
+    }).join("");
+  }
+
+  function scrollToRecipe() {
+    // Evita a volta indesejada ao topo da landing page ao trocar de lição.
+    // A mudança de conteúdo acontece antes da rolagem, para evitar layout shift.
+    window.requestAnimationFrame(function () {
+      var target = $("topo");
+      if (!target) return;
+      var reduce = window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      target.scrollIntoView({ block: "start", behavior: reduce ? "instant" : "smooth" });
+    });
   }
 
   function renderHero(r) {
@@ -122,6 +152,7 @@
 
   function renderLesson(r) {
     $("lessonTitle").textContent = "Um pouco de " + r.idioma.toLowerCase() + "...";
+    $("quizDay").textContent = String(r.dia);
     $("vocabList").innerHTML = r.vocabulario.map(function (item) {
       return '<div class="vocab-card"><strong lang="' + langs[r.id] + '">' + esc(item.termo) +
         '</strong><span>' + esc(item.significado) + '</span></div>';
@@ -137,22 +168,31 @@
     var passed = concluidas.includes(r.id);
     $("quizTitle").textContent = r.pergunta;
     $("quizOptions").innerHTML = r.opcoes.map(function (option, i) {
-      return '<button type="button" class="quiz-option' + (passed && i === r.resposta ? " correct" : "") +
-        '" data-answer="' + i + '"' + (passed ? " disabled" : "") + '><span class="option-letter" aria-hidden="true">' +
+      var isCorrect = passed && i === r.resposta;
+      var isSelected = !passed && selectedAnswer === i;
+      return '<button type="button" class="quiz-option' +
+        (isCorrect ? ' correct' : '') + (isSelected ? ' selected' : '') +
+        '" data-answer="' + i + '" aria-pressed="' + (isSelected ? 'true' : 'false') + '"' +
+        (passed ? ' disabled' : '') + '><span class="option-letter" aria-hidden="true">' +
         String.fromCharCode(65 + i) + '</span><span>' + esc(option) + '</span></button>';
     }).join("");
 
+    $("quizMiniProgress").style.width = passed ? "100%" : "20%";
+    $("verifyAnswer").hidden = passed;
+    $("verifyAnswer").disabled = passed || selectedAnswer === null;
     var feedback = $("quizFeedback");
     feedback.hidden = !passed;
     feedback.className = passed ? "quiz-feedback ok" : "";
-    feedback.textContent = passed ? "✓ Resposta correta! " + r.explicacao : "";
+    feedback.textContent = passed ? "✓ Muito bem! " + r.explicacao : "";
     $("couponReward").hidden = !passed;
+    $("rewardNextDay").textContent = r.dia === receitas.length ? "Ver passaporte ✓" : "Próximo destino →";
   }
 
   function navigate(id, push, scroll) {
     var next = receitas.find(function (r) { return r.id === id; });
     if (!next) next = receitas[0];
     ativa = next;
+    selectedAnswer = null;
     renderTabs();
     centerActiveDay();
     renderHero(next);
@@ -160,6 +200,7 @@
     renderSteps(next);
     renderLesson(next);
     progress();
+    renderStamps();
     $("prevDay").disabled = next.dia === 1;
     $("nextDay").disabled = next.dia === 7;
     $("prevDay").textContent = next.dia === 1 ? "← Primeiro dia" : "← Dia " + (next.dia - 1);
@@ -168,7 +209,7 @@
       var link = window.location.pathname + "?dia=" + encodeURIComponent(next.id);
       window.history.pushState({ dia: next.id }, "", link);
     }
-    if (scroll) window.scrollTo({ top: 0, behavior: "smooth" });
+    if (scroll) scrollToRecipe();
   }
 
   $("dayTabs").addEventListener("click", function (event) {
@@ -191,23 +232,55 @@
   $("quizOptions").addEventListener("click", function (event) {
     var button = event.target.closest("button[data-answer]");
     if (!button || concluidas.includes(ativa.id)) return;
-    var selected = Number(button.getAttribute("data-answer"));
-    var feedback = $("quizFeedback");
+    selectedAnswer = Number(button.getAttribute("data-answer"));
     $("quizOptions").querySelectorAll(".quiz-option").forEach(function (item) {
+      var selected = item === button;
+      item.classList.toggle("selected", selected);
       item.classList.remove("incorrect");
+      item.setAttribute("aria-pressed", selected ? "true" : "false");
     });
-    if (selected === ativa.resposta) {
+    var feedback = $("quizFeedback");
+    feedback.hidden = true;
+    feedback.textContent = "";
+    $("verifyAnswer").disabled = false;
+  });
+
+  $("verifyAnswer").addEventListener("click", function () {
+    if (selectedAnswer === null || concluidas.includes(ativa.id)) return;
+    var answer = selectedAnswer;
+    selectedAnswer = null;
+    if (answer === ativa.resposta) {
       concluidas.push(ativa.id);
       save(doneKey, concluidas);
       renderQuiz();
       renderTabs();
       progress();
-      toast("Mais um carimbo no passaporte! 🎉");
+      renderStamps();
+      toast("✨ Resposta certa! +20 XP e um carimbo conquistado.");
     } else {
-      button.classList.add("incorrect");
-      feedback.className = "quiz-feedback bad";
-      feedback.textContent = "Quase! Leia as expressões ao lado e tente outra alternativa.";
+      var feedback = $("quizFeedback");
       feedback.hidden = false;
+      feedback.className = "quiz-feedback bad";
+      feedback.textContent = "Você está quase lá! Revise as palavras ao lado e escolha outra resposta.";
+      $("quizOptions").querySelectorAll(".quiz-option").forEach(function (item) {
+        item.classList.remove("selected");
+        item.setAttribute("aria-pressed", "false");
+        item.classList.toggle("incorrect", Number(item.getAttribute("data-answer")) === answer);
+      });
+      $("verifyAnswer").disabled = true;
+    }
+  });
+
+  $("stampGrid").addEventListener("click", function (event) {
+    var stamp = event.target.closest("button[data-stamp]");
+    if (stamp) navigate(stamp.getAttribute("data-stamp"), true, true);
+  });
+
+  $("rewardNextDay").addEventListener("click", function () {
+    if (ativa.dia < receitas.length) {
+      navigate(receitas[ativa.dia].id, true, true);
+    } else {
+      $("passaporte").scrollIntoView({ block: "start", behavior: "smooth" });
     }
   });
 
