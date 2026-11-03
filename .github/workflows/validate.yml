@@ -21,3 +21,17 @@ jobs:
           node --check app.js
       - name: Verificar as sete receitas
         run: node tests/smoke.test.cjs
+      - name: Instalar dependências de testes visuais
+        run: npm install --no-audit --no-fund
+      - name: Instalar navegador Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Validar layouts desktop e mobile
+        run: npm run test:ui
+      - name: Anexar capturas e evidências de testes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-e-testes
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 7
