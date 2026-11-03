@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
-@import url('https://db.onlinewebfonts.com/c/14936bb7a4b6575fd2eee80a3ab52cc2?family=Feather+Bold');
+/* Nunito: fonte substituta aprovada nas diretrizes públicas do Duolingo. */
 
 :root {
   --purple: #593f86;
@@ -14,7 +14,7 @@
   --accent: #b999ec;
   --accent-ink: #593f86;
   --shadow: 0 14px 40px rgba(66, 45, 104, .07);
-  --font-head: 'Feather Bold', 'Nunito', ui-rounded, system-ui, sans-serif;
+  --font-head: 'Nunito', ui-rounded, system-ui, sans-serif;
   --font-body: 'Nunito', ui-rounded, system-ui, sans-serif;
 }
 * { box-sizing: border-box; }
@@ -202,4 +202,230 @@ p { margin: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {scroll-behavior:auto !important;transition:none !important;animation:none !important;}
+}
+
+
+/* V2 — diretrizes públicas Duolingo: verde como marca, contraste, títulos curtos,
+   Nunito como fonte substituta autorizada, navegação clara e layouts mobile-first. */
+:root {
+  --ink: #3c3c3c;
+  --green: #58cc02;
+  --green-deep: #43a500;
+  --page: #f7f7f7;
+  --edge: #e5e5e5;
+  --font-head: 'Nunito', ui-rounded, system-ui, sans-serif;
+}
+body { color: var(--ink); }
+h1, h2, h3, h4 { font-weight: 1000; text-wrap: balance; }
+section { scroll-margin-top: 78px; }
+.site-header { border-bottom: 2px solid #e9e9e9; }
+.logo-icon { background: #58cc02; color:#fff; transform: rotate(-9deg); border-radius: 14px; }
+.logo-word { color: #3c3c3c; font-weight:1000; }
+.logo-word span { color: #58cc02; }
+.logo-caption { color:#777; }
+.streak { border-color: #e1f1d2; background:#f0fae7; color:#326900; }
+.button { min-height:48px; }
+.section-label {color:#498e14;}
+.button-primary, .button-campaign {background:#58cc02;color:#163a00;box-shadow:0 4px #43a500;}
+.button-primary:hover,.button-campaign:hover {background:#6ce020;}
+.button-primary:active,.button-campaign:active {transform:translateY(3px);box-shadow:0 1px #43a500;}
+.campaign-hero {position:relative;overflow:hidden;background: radial-gradient(circle at 80% 20%, #82e83c 0%, transparent 35%),linear-gradient(125deg,#58cc02 0%,#76dd2b 100%);}
+.campaign-hero::before,.campaign-hero::after {content:"";position:absolute;border-radius:50%;pointer-events:none;}
+.campaign-hero::before {height:740px;width:740px;border:85px solid #ffffff1a;right:-320px;top:-430px;}
+.campaign-hero::after {height:340px;width:340px;border:62px solid #1a830014;left:-200px;bottom:-260px;}
+.campaign-layout {min-height:540px;display:grid;grid-template-columns:minmax(0, 1.06fr) minmax(0,.94fr);gap:28px;align-items:center;padding-block:61px 55px;position:relative;z-index:1;}
+.campaign-copy {position:relative;z-index:2;}
+.campaign-kicker {display:inline-flex;align-items:center;gap:10px;background:#ffffffde;color:#2e690a;border-radius:999px;padding:9px 15px;font-size:13px;font-weight:1000;letter-spacing:.02em;box-shadow:0 2px #ecffe4;}
+.kicker-dot {width:9px;height:9px;background:#58cc02;border-radius:50%;box-shadow:0 0 0 4px #e6f9db;}
+.campaign-copy h1 {font-size:clamp(54px,7.6vw,100px);font-weight:1000;line-height:.98;letter-spacing:-.052em;margin:23px 0 17px;color:#204d06;}
+.campaign-copy h1 span {display:block;}
+.campaign-copy h1 span:last-child {color:#fff; text-shadow:0 3px 0 #388710;}
+.campaign-lead {font-size:clamp(19px,2vw,25px);font-weight:1000;line-height:1.3;color:#1f430e;margin-bottom:10px;}
+.campaign-description {font-size:16px;line-height:1.45;font-weight:800;max-width:485px;color:#234f11;}
+.campaign-actions {display:flex;align-items:center;flex-wrap:wrap;gap:11px;margin-top:28px;}
+.button-campaign {background:#fff;color:#326a0f;box-shadow:0 5px #dceec7;padding-inline:24px;}
+.button-campaign:hover {background:#f9fff7;}
+.button-campaign:active {box-shadow:0 2px #dceec7;}
+.button-campaign-secondary {color:#244a12;background:#ffffff38;border:2px solid #ffffff95;box-shadow:none;}
+.button-campaign-secondary:hover {background:#ffffff70;}
+.campaign-progress {max-width:430px;margin-top:35px;}
+.campaign-progress .progress-meta {font-size:13px;color:#215407;font-weight:1000;}
+.campaign-progress .progress-track {background:#2376005e;border:2px solid #418c28;height:16px;}
+.campaign-progress .progress-fill {background:#fff;box-shadow:inset 0 -2px #d9fbd0;}
+.passport-showcase {min-width:0;min-height:455px;display:grid;place-items:center;position:relative;isolation:isolate;}
+.passport-showcase::before {content:"";position:absolute;width:380px;height:380px;border-radius:50%;background:#ffffff22;box-shadow:0 0 0 32px #ffffff15,0 0 0 74px #ffffff0c;z-index:-1;}
+.passport-cover {width:292px;min-height:385px;padding:25px 24px 20px;border:9px solid #fff;background:#fcfbff;border-radius:31px;box-shadow:0 24px 0 #2f770726,0 36px 55px #26580055;transform:rotate(9deg);position:relative;display:flex;flex-direction:column;align-items:stretch;}
+.passport-cover::after {content:"";position:absolute;inset:8px;border:2px dashed #d6c5ef;border-radius:19px;pointer-events:none;}
+.passport-cover-top {display:flex;justify-content:space-between;align-items:center;gap:15px;color:#593f86;font-size:12px;letter-spacing:.1em;font-weight:1000;line-height:1.2;text-align:right;position:relative;z-index:1;}
+.passport-seal {background:#e6dcf5;display:grid;place-items:center;border-radius:13px;height:49px;width:49px;font-size:32px;color:#593f86;letter-spacing:0;}
+.passport-plate {height:170px;width:170px;margin:20px auto 17px;display:grid;place-items:center;position:relative;z-index:1;background:#f5e8ff;border:11px solid #fff;border-radius:50%;box-shadow:0 0 0 3px #e5d0f2,0 7px 14px #46325222;}
+.passport-plate > span:first-child {font-size:100px;line-height:1;filter:drop-shadow(0 5px 2px #4b384620);}
+.passport-mini-flag {position:absolute;right:-12px;bottom:-8px;background:#fff;border-radius:50%;font-size:26px;padding:3px;box-shadow:0 2px 5px #0002;}
+.passport-stamps {display:flex;justify-content:center;gap:5px;position:relative;z-index:1;padding:9px 0 15px;white-space:nowrap;}
+.passport-stamps span {font-size:24px;filter:drop-shadow(0 2px 1px #0002);}
+.passport-foot {border-top:2px dashed #dac7eb;padding-top:13px;display:flex;justify-content:space-between;gap:8px;font-size:9px;letter-spacing:.02em;font-weight:1000;color:#6c5286;position:relative;z-index:1;}
+.passport-foot span {color:#9484a4;}
+.hero-spark {position:absolute;color:#fff;z-index:2;line-height:1;}
+.hero-spark-one {font-size:70px;left:8%;top:11%;transform:rotate(-14deg);}
+.hero-spark-two {font-size:34px;right:1%;bottom:12%;transform:rotate(19deg);}
+.floating-recipe {position:absolute;z-index:3;background:#fff;border:3px solid #fff;border-radius:23px;box-shadow:0 6px 0 #26530033,0 15px 24px #2654002e;display:flex;flex-direction:column;align-items:center;line-height:1.15;padding:11px 17px;transform:rotate(-11deg);}
+.floating-recipe span {font-size:43px;}
+.floating-recipe strong {font-size:17px;font-weight:1000;color:#593f86;}
+.floating-recipe small {font-size:12px;font-weight:900;color:#665777;}
+.floating-recipe-one {left:0;bottom:16%;}
+.floating-recipe-two {right:0;top:11%;transform:rotate(12deg);}
+.how-section {background:#fff;padding:58px 0 54px;border-bottom:2px solid #f0f0f0;}
+.how-heading {display:flex;align-items:end;justify-content:space-between;gap:22px;margin-bottom:24px;}
+.how-heading h2 {font-size:clamp(32px,4vw,48px);letter-spacing:-.04em;color:#363636;margin:9px 0 0;}
+.how-heading > p {color:#666;max-width:330px;font-weight:700;font-size:15px;line-height:1.45;}
+.how-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.how-card {min-width:0;position:relative;border-radius:24px;border:2px solid #e6e6e6;background:#fff;padding:22px 22px 23px;box-shadow:0 4px #eee;}
+.how-card::after {content:"";position:absolute;inset:9px;pointer-events:none;border:1px dashed #efefef;border-radius:16px;}
+.how-number {font-size:12px;font-weight:1000;color:#5b9e26;letter-spacing:.1em;}
+.how-emoji {display:block;font-size:42px;margin:14px 0;line-height:1.15;}
+.how-card h3 {font-family:var(--font-body);font-size:21px;font-weight:1000;color:#353535;letter-spacing:-.025em;margin:0 0 10px;}
+.how-card p {font-size:14px;line-height:1.45;color:#666;font-weight:700;}
+.how-disclaimer {display:flex;align-items:center;gap:9px;font-size:12px;line-height:1.5;color:#777;margin-top:20px;}
+.how-disclaimer span {font-size:18px;color:#58a319;}
+.daybar {border-bottom:2px solid #e5e5e5;}
+.daybar-heading {display:flex;align-items:end;justify-content:space-between;gap:20px;padding-top:30px;}
+.daybar-heading h2 {margin:5px 0 0;font-size:clamp(27px,3vw,36px);color:#363636;letter-spacing:-.025em;}
+.swipe-hint {font-size:13px;color:#777;font-weight:900;}
+.daybar-inner {padding-top:19px;padding-bottom:19px;scroll-snap-type:x proximity;scroll-padding-inline:20px;}
+.day-tab {min-height:62px;border-color:#e6e6e6;box-shadow:0 3px #e5e5e5;scroll-snap-align:center;}
+.day-tab[aria-current="true"] {background:#f0ffe7;border-color:#58cc02;box-shadow:0 3px #43a500;color:#326900;}
+.day-tab:hover {border-color:#58cc02;}
+.tab-flag {font-size:26px;}
+.hero {background:linear-gradient(125deg,var(--accent),#fcf8ff 108%);}
+.hero-inner {min-height:385px;gap:32px;}
+.hero h2 {font-size:clamp(41px,5.6vw,66px);letter-spacing:-.045em;color:#2f2541;}
+.hero-art {min-width:0;}
+.hero-art::before {box-shadow:0 0 0 20px #ffffff28,0 0 0 43px #ffffff14;}
+.hero-art::after {box-shadow:0 15px 35px #48245e2a,inset 0 0 0 13px #fff8f0,inset 0 0 0 17px #f2e4dd;}
+.art-sticker {display:flex;flex-direction:column;align-items:center;min-width:93px;min-height:62px;justify-content:center;background:#58cc02;color:#163500;box-shadow:0 5px #43a500;font-size:14px;transform:rotate(8deg);}
+.art-sticker small {font-size:11px;font-family:var(--font-body);font-weight:1000;}
+.art-sticker strong {font-family:var(--font-body);font-size:22px;line-height:1.1;}
+.chip {border:1px solid #ffffff4d;}
+.ingredient-label {min-height:48px;}
+.panel-header h3,.section-head h2,.lesson h2 {letter-spacing:-.035em;}
+.step-item h4 {font-family:var(--font-body);font-weight:1000;letter-spacing:0;}
+.vocab-card strong {font-family:var(--font-body);}
+.quiz-card h3 {font-family:var(--font-body);font-size:25px;}
+.quiz-option {min-height:56px;}
+.reward-title, .reward-code {font-family:var(--font-body);}
+.footer strong {font-family:var(--font-body);font-weight:1000;}
+.mobile-quickbar {display:none;}
+@media(max-width:960px) {
+  .campaign-layout {grid-template-columns:1fr 0.88fr;gap:10px;min-height:480px;padding-block:45px;}
+  .campaign-copy h1 {font-size:clamp(47px,7.3vw,74px);}
+  .passport-showcase {min-height:375px;}
+  .passport-showcase::before {width:300px;height:300px;}
+  .passport-cover {transform:rotate(9deg) scale(.86);}
+  .floating-recipe-one {left:-4%;bottom:15%;}
+  .floating-recipe-two {right:-2%;top:9%;}
+  .how-heading {align-items:start;}
+}
+@media(max-width:680px) {
+  html {scroll-padding-top:72px;}
+  section {scroll-margin-top:72px;}
+  .site-header {z-index:50;}
+  .header-inner {min-height:64px;gap:8px;}
+  .logo {gap:7px;}
+  .logo-word {font-size:clamp(13px,4vw,17px);}
+  .logo-icon {height:34px;width:34px;flex:none;border-radius:11px;}
+  .logo-caption {font-size:8px;letter-spacing:.05em;}
+  .streak {font-size:11px;padding:6px 9px;border-radius:12px;}
+  .campaign-layout {display:flex;flex-direction:column;align-items:stretch;gap:0;padding-block:30px 0;min-height:auto;}
+  .campaign-kicker {font-size:11px;padding:7px 12px;}
+  .campaign-copy h1 {font-size:clamp(42px,12.7vw,62px);letter-spacing:-.055em;margin:15px 0 12px;line-height:1.01;}
+  .campaign-lead {font-size:18px;margin-bottom:6px;}
+  .campaign-description {font-size:14px;line-height:1.42;max-width:410px;}
+  .campaign-actions {gap:9px;margin-top:18px;}
+  .campaign-actions .button {flex:1 1 145px;font-size:13px;padding:11px 12px;min-height:47px;}
+  .campaign-progress {margin-top:22px;max-width:100%;}
+  .campaign-progress .progress-meta {font-size:12px;}
+  .campaign-progress .progress-track {height:13px;}
+  .passport-showcase {min-height:160px;height:160px;width:100%;margin-top:8px;overflow:hidden;}
+  .passport-showcase::before {width:185px;height:185px;box-shadow:0 0 0 24px #ffffff1b;}
+  .passport-cover {position:absolute;top:-4px;left:50%;margin-left:-146px;transform:rotate(8deg) scale(.54);transform-origin:top center;}
+  .floating-recipe {padding:7px 11px;border-radius:13px;}
+  .floating-recipe span {font-size:28px;}
+  .floating-recipe strong {font-size:13px;}
+  .floating-recipe small {font-size:10px;}
+  .floating-recipe-one {left:7%;bottom:16%;}
+  .floating-recipe-two {right:6%;top:16%;}
+  .hero-spark-one {font-size:30px;top:10%;}
+  .hero-spark-two {font-size:20px;bottom:25%;}
+  .how-section {padding:34px 0 32px;}
+  .how-heading {display:block;margin-bottom:17px;}
+  .how-heading h2 {font-size:30px;margin-top:8px;line-height:1.1;}
+  .how-heading > p {font-size:13px;margin-top:9px;max-width:none;}
+  .how-grid {display:flex;overflow-x:auto;gap:12px;padding:1px 2px 10px;scroll-padding-inline:2px;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;scrollbar-width:thin;}
+  .how-card {flex:0 0 81%;max-width:285px;scroll-snap-align:start;padding:15px 17px;border-radius:20px;}
+  .how-card h3 {font-size:19px;}
+  .how-emoji {font-size:30px;margin:9px 0 8px;}
+  .how-card p {font-size:13px;}
+  .how-disclaimer {font-size:11px;margin-top:10px;}
+  .daybar-heading {padding-top:24px;gap:7px;align-items:center;}
+  .daybar-heading h2 {font-size:25px;}
+  .swipe-hint {font-size:11px;max-width:116px;text-align:right;line-height:1.2;}
+  .daybar-inner {width:100%;padding-inline:15px;gap:10px;padding-block:14px;scroll-padding-inline:15px;}
+  .day-tab {flex:0 0 121px;min-width:121px;min-height:54px;border-radius:15px;padding:8px 11px;}
+  .tab-text {font-size:12px;}
+  .tab-text small {font-size:11px;}
+  .tab-flag {font-size:22px;}
+  .hero-inner {padding-block:30px 20px;min-height:auto;gap:0;}
+  .hero h2 {font-size:clamp(37px,10.4vw,52px);line-height:1.06;margin:13px 0 9px;}
+  .hero-description {font-size:14px;}
+  .hero-lead {font-size:17px;margin-bottom:9px;}
+  .hero-chips {margin-top:15px;gap:6px;}
+  .chip {font-size:11px;padding:6px 9px;}
+  .hero-buttons {margin-top:18px;gap:9px;}
+  .hero-buttons .button {min-height:45px;font-size:13px;padding:10px 12px;}
+  .hero-art {min-height:130px;height:130px;margin-top:16px;}
+  .hero-art::before {width:175px;height:175px;}
+  .hero-art::after {width:145px;height:145px;}
+  .food-icon {font-size:94px;}
+  .art-flag {font-size:32px;left:18%;top:13%;}
+  .art-sticker {font-size:10px;right:15%;bottom:7%;min-width:70px;min-height:49px;padding:8px;}
+  .art-sticker small {font-size:9px;}
+  .art-sticker strong {font-size:17px;}
+  .content {padding:29px 0 43px;}
+  .section-head h2 {font-size:30px;}
+  .section-head p:not(.section-label) {font-size:13px;}
+  .product-title {font-size:16px;}
+  .product-note {font-size:12px;}
+  .product-banner {border-radius:18px;}
+  .recipe-grid,.lesson-layout {gap:18px;}
+  .panel {border-radius:20px;}
+  .panel-header h3 {font-size:29px;}
+  .ingredient-label {font-size:14px;padding:11px 0;}
+  .step-item {grid-template-columns:34px 1fr;gap:12px;padding:15px 0;}
+  .step-number {width:32px;height:32px;border-radius:10px;font-size:17px;}
+  .step-item h4 {font-size:17px;margin-bottom:5px;}
+  .lesson {padding:38px 0;}
+  .lesson h2 {font-size:34px;}
+  .quiz-card {border-radius:20px;padding:20px 17px;}
+  .quiz-card h3 {font-size:21px;}
+  .quiz-option {min-height:54px;font-size:14px;}
+  .footer {padding-bottom:110px;}
+  .after-lesson {padding-bottom:35px;}
+  .mobile-quickbar {position:fixed;z-index:45;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:9px 14px calc(9px + env(safe-area-inset-bottom));background:#fff;border-top:2px solid #e5e5e5;box-shadow:0 -9px 28px #24242412;}
+  .mobile-quickbar a {display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;text-decoration:none;border-radius:13px;font-size:13px;font-weight:1000;color:#4b4b4b;}
+  .mobile-quickbar a:focus-visible,.mobile-quickbar a:hover {background:#f0fbe6;color:#357b05;}
+}
+@media(max-width:360px) {
+  .logo-word {font-size:12px;}
+  .header-inner {min-height:60px;}
+  .logo-icon {width:30px;height:30px;}
+  .streak {font-size:10px;padding:6px;}
+  .campaign-copy h1 {font-size:41px;}
+  .campaign-actions .button {font-size:12px;}
+  .floating-recipe-one {left:1%;}
+  .floating-recipe-two {right:1%;}
+  .bottom-nav {gap:9px;}
+  .bottom-nav .button {font-size:12px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .passport-cover,.floating-recipe {animation:none!important;}
 }
