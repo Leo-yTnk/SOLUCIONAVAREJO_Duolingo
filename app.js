@@ -102,7 +102,10 @@
       if (!target) return;
       var reduce = window.matchMedia &&
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      target.scrollIntoView({ block: "start", behavior: reduce ? "instant" : "smooth" });
+      var header = document.querySelector(".site-header");
+      var headerHeight = header ? header.getBoundingClientRect().height : 0;
+      var top = window.scrollY + target.getBoundingClientRect().top - headerHeight - 10;
+      window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "instant" : "smooth" });
     });
   }
 
