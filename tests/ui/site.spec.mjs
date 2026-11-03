@@ -51,7 +51,11 @@ test('escolha de país, quiz e passaporte persistente no celular', async ({ page
   await expect(page.locator('#heroArtDay')).toHaveText('dia 2');
   await expect(page.locator('#productName')).toContainText('Karaague Empanado');
   await page.locator('#quizOptions button').first().click();
+  await expect(page.locator('#verifyAnswer')).toBeEnabled();
+  await page.locator('#verifyAnswer').click();
   await expect(page.locator('#couponReward')).toBeVisible();
+  await expect(page.locator('#xpCount')).toHaveText('⚡ 20 XP');
+  await expect(page.locator('.stamp-item.earned')).toHaveCount(1);
   await expect(page.locator('#progressText')).toHaveText('1 / 7');
 
   await page.reload();
@@ -72,4 +76,47 @@ test('fluxo explicativo leva à receita e à lição', async ({ page }) => {
   await page.locator('.mobile-quickbar a[href="#idioma"]').click();
   await expect(page).toHaveURL(/#idioma$/);
   await expect(page.locator('#quizTitle')).toBeVisible();
+});
+
+test('navegação entre dias começa na receita, sem voltar ao início da campanha', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await page.locator('#dayTabs [data-day="mexico"]').click();
+  await expect(page.locator('#recipeTitle')).toHaveText('Tacos de Frango');
+  await expect(page).toHaveURL(/dia=mexico/);
+  await expect.poll(async () => page.evaluate(() => {
+    const header = document.querySelector('.site-header').getBoundingClientRect().bottom;
+    const hero = document.getElementById('topo').getBoundingClientRect().top;
+    return Math.abs(hero - header);
+  }), { timeout: 6000 }).toBeLessThan(55);
+  expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(200);
+
+  await page.locator('#nextDay').click();
+  await expect(page.locator('#recipeTitle')).toHaveText('Frango Tikka Masala');
+  await expect.poll(async () => page.evaluate(() => {
+    const header = document.querySelector('.site-header').getBoundingClientRect().bottom;
+    const hero = document.getElementById('topo').getBoundingClientRect().top;
+    return Math.abs(hero - header);
+  }), { timeout: 6000 }).toBeLessThan(55);
+});
+
+test('quiz exige verificar, permite tentar de novo e entrega XP uma única vez', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/?dia=mexico');
+  await expect(page.locator('#verifyAnswer')).toBeDisabled();
+  await page.locator('#quizOptions button').first().click(); // opção errada
+  await expect(page.locator('#verifyAnswer')).toBeEnabled();
+  await page.locator('#verifyAnswer').click();
+  await expect(page.locator('#quizFeedback')).toContainText('Revise as palavras');
+  await expect(page.locator('#xpCount')).toHaveText('⚡ 0 XP');
+  await page.locator('#quizOptions button').nth(1).click(); // "Pollo"
+  await page.locator('#verifyAnswer').click();
+  await expect(page.locator('#couponReward')).toBeVisible();
+  await expect(page.locator('#xpCount')).toHaveText('⚡ 20 XP');
+  await expect(page.locator('#stampsProgress')).toHaveText('1/7 carimbos');
+  await page.reload();
+  await expect(page.locator('#xpCount')).toHaveText('⚡ 20 XP');
+  await expect(page.locator('#verifyAnswer')).toBeHidden();
+  await page.locator('#rewardNextDay').click();
+  await expect(page.locator('#recipeTitle')).toHaveText('Frango Tikka Masala');
 });
