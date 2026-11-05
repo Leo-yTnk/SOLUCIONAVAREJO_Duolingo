@@ -681,3 +681,8 @@ html {scroll-padding-top:0;}
   .unit-count {font-size:9px;}
   .daybar-heading h2 {font-size:26px;}
 }
+
+/* As bandeiras continuam reconhecíveis mesmo antes de ganhar o carimbo. */
+.stamp-item:not(.earned) .stamp-symbol {background:#ffffffec;}
+.stamp-item:not(.earned) .stamp-flag.flag-img {filter:saturate(.87);opacity:.92;}
+.stamp-item.earned .stamp-flag.flag-img {filter:none;opacity:1;}
