@@ -22,7 +22,7 @@ Site estático de **demonstração acadêmica** da proposta de campanha **Swift 
 - Botão **Ouvir pronúncia** com a síntese de voz do dispositivo, caso oferecida pelo navegador; a qualidade da voz varia conforme idioma e plataforma.
 - Interface responsiva com navegação horizontal entre países e **atalhos inferiores** no celular.
 - Navegação acessível, contraste revisado e respeito ao movimento reduzido.
-- Verificações automáticas de sintaxe, conteúdo, **rolagem entre dias**, XP, fluxo de quiz e layouts de 320, 390, 768 e 1280 px.
+- Verificações automáticas de sintaxe, conteúdo, **rolagem entre dias**, XP, fluxo de quiz e layouts de 320, 390, 768 e 1280 px. Os testes também conferem `getComputedStyle` para garantir que cards não tenham sombra nem costuras.
 
 ## Roteiro dos sete sabores
 
@@ -47,6 +47,11 @@ A primeira versão derivou a hierarquia da página de receita no [Figma](https:/
 O redesign foi baseado nas diretrizes e nos artigos públicos sobre design do Duolingo:
 
 - **Feather Green #58CC02** utilizado como cor principal; roxo em seções especiais. Controles com bordas de 2 px e sombra inferior para indicar que são pressionáveis.
+- **Sistema visual unificado (v4):** `design-system.css` concentra os tokens de cores, raios de canto, bordas e espaçamentos e é carregado após `styles.css`.
+- **Sem stitched cards:** eliminados os traços internos costurados e as bordas tracejadas. Cards informativos (receitas, explicação, quiz, trilha de unidade e passaporte) usam apenas bordas sólidas, sem sombra.
+- **Sombras de profundidade apenas em controles clicáveis** — botões, escolha dos países, alternativas do quiz e controle de áudio. Cards de carimbos são clicáveis, mas usam apenas borda para não confundir a hierarquia.
+- Escala padrão: **22 px** para cards no desktop, **18 px** para cards compactos/mobile e **15 px** para controles. Bordas de 2 px.
+
 - **Trilha de unidades e estados claros** (lição atual, concluída, disponível), inspirados no produto educacional; a navegação continua livre nesta demonstração acadêmica.
 - **Títulos curtos e expressivos**, espaçamento consistente e hierarquia clara.
 - **Nunito do Google Fonts para títulos e corpo**: é a fonte substituta oficialmente recomendada quando as fontes proprietárias não estão disponíveis.
