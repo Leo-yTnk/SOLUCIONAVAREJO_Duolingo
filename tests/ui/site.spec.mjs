@@ -145,3 +145,57 @@ test('botão de pronúncia está disponível sem impedir a miniatividade', async
   await expect(page.locator('#languagePhrase')).toHaveAttribute('lang', 'fr');
   await expect(page.locator('#verifyAnswer')).toBeDisabled();
 });
+
+test('cards estáticos têm apenas bordas sólidas, sem sombra ou costura', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const staticCards = [
+    '.product-banner', '.panel', '.how-card', '.quiz-card', '.speech',
+    '.vocab-card', '.unit-banner', '.passport-cover', '.floating-recipe',
+    '.stamps-section', '.stamp-item', '.safety', '.reward-code'
+  ];
+  for (const selector of staticCards) {
+    const node = page.locator(selector).first();
+    await expect(node).toBeAttached();
+    const css = await node.evaluate(el => {
+      const s = getComputedStyle(el);
+      return { boxShadow: s.boxShadow, borderStyle: s.borderTopStyle, borderWidth: parseFloat(s.borderTopWidth) };
+    });
+    expect(css.boxShadow, 'sombra indevida em ' + selector).toBe('none');
+    expect(css.borderStyle, 'borda diferente de sólida em ' + selector).toBe('solid');
+    expect(css.borderWidth, 'borda ausente em ' + selector).toBeGreaterThanOrEqual(1);
+  }
+  for (const selector of ['.how-card', '.passport-cover']) {
+    const state = await page.locator(selector).first().evaluate(el => {
+      const pseudo = getComputedStyle(el, '::after');
+      return { display: pseudo.display, content: pseudo.content };
+    });
+    expect(state.display).toBe('none');
+  }
+  const interactive = ['.day-tab[aria-current="true"]', '.quiz-option', '.button-primary'];
+  for (const selector of interactive) {
+    const shadow = await page.locator(selector).first().evaluate(el => getComputedStyle(el).boxShadow);
+    expect(shadow, 'controle sem affordance: ' + selector).not.toBe('none');
+  }
+});
+
+test('sistema visual consistente entre desktop e celular', async ({ page }) => {
+  for (const width of [320, 390, 1280]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto('/');
+    const radii = await page.evaluate(() => {
+      const style = getComputedStyle(document.documentElement);
+      return [
+        style.getPropertyValue('--ds-radius-card').trim(),
+        style.getPropertyValue('--ds-radius-card-sm').trim(),
+        style.getPropertyValue('--ds-radius-control').trim()
+      ];
+    });
+    expect(radii).toEqual(['22px', '18px', '15px']);
+    const horizontalOverflow = await page.evaluate(() =>
+      Math.max(document.body.scrollWidth, document.documentElement.scrollWidth) -
+      document.documentElement.clientWidth
+    );
+    expect(horizontalOverflow).toBeLessThanOrEqual(2);
+  }
+});
