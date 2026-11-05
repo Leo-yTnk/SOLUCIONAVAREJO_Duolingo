@@ -20,8 +20,8 @@ assert.equal(new Set(dias.map((d) => d.id)).size, 7, "IDs únicos");
 assert.deepEqual(Array.from(dias, (d) => d.codigo), ["fr","jp","mx","in","it","th","pt"], "códigos ISO corretos");
 dias.forEach(d => {
   const svg = fs.readFileSync(root + "/assets/flags/" + d.codigo + ".svg", "utf8");
-  assert.match(svg, /<svg[\\s>]/);
-  assert.match(svg, /<\\/svg>/);
+  assert.ok(svg.includes("<svg"), "SVG válido");
+  assert.ok(svg.includes("</svg>"), "SVG fechado");
 });
 assert.match(fs.readFileSync(root + "/assets/flags/LICENSE", "utf8"), /MIT License/);
 dias.forEach((d, i) => {
@@ -47,7 +47,7 @@ assert.match(html, /id="como-funciona"/, "seção explicativa");
 assert.match(html, /id="sabores"/, "navegação para os sete dias");
 assert.match(html, /id="heroArtDay"/, "carimbo do dia no hero");
 assert.match(html, /class="passport-stamps"/);
-assert.match(html, /src="assets\\/flags\\/fr\\.svg"/);
+assert.ok(html.includes('src="assets/flags/fr.svg"'));
 assert.match(html, /id="speakPhrase"/);
 assert.match(html, /id="journeyCount"/);
 assert.match(html, /id="headerFlag"/);
