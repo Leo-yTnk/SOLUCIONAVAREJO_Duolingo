@@ -26,6 +26,7 @@
       <div class="header-actions">
         <span class="streak" id="headerCount" aria-label="Lições concluídas">⭐ 0/7 lições</span>
         <span class="xp-pill" id="xpCount" aria-label="Experiência ilustrativa acumulada">⚡ 0 XP</span>
+        <span class="header-country" title="País selecionado"><img id="headerFlag" class="flag-img" src="assets/flags/fr.svg" alt=""><span id="headerCountryName">França</span></span>
       </div>
     </div>
   </header>
@@ -53,8 +54,8 @@
           <span class="hero-spark hero-spark-two" aria-hidden="true">✦</span>
           <div class="passport-cover" aria-hidden="true">
             <div class="passport-cover-top"><span class="passport-seal">✳</span><span>PASSAPORTE<br>DE SABORES</span></div>
-            <div class="passport-plate"><span>🍲</span><span class="passport-mini-flag">🇫🇷</span></div>
-            <div class="passport-stamps"><span>🇫🇷</span><span>🇯🇵</span><span>🇲🇽</span><span>🇮🇳</span><span>🇮🇹</span><span>🇹🇭</span><span>🇵🇹</span></div>
+            <div class="passport-plate"><span>🍲</span><span class="passport-mini-flag"><img class="flag-img" src="assets/flags/fr.svg" alt=""></span></div>
+            <div class="passport-stamps"><span class="passport-stamp"><img class="flag-img" src="assets/flags/fr.svg" alt="" aria-hidden="true"></span><span class="passport-stamp"><img class="flag-img" src="assets/flags/jp.svg" alt="" aria-hidden="true"></span><span class="passport-stamp"><img class="flag-img" src="assets/flags/mx.svg" alt="" aria-hidden="true"></span><span class="passport-stamp"><img class="flag-img" src="assets/flags/in.svg" alt="" aria-hidden="true"></span><span class="passport-stamp"><img class="flag-img" src="assets/flags/it.svg" alt="" aria-hidden="true"></span><span class="passport-stamp"><img class="flag-img" src="assets/flags/th.svg" alt="" aria-hidden="true"></span><span class="passport-stamp"><img class="flag-img" src="assets/flags/pt.svg" alt="" aria-hidden="true"></span></div>
             <div class="passport-foot">swift × duolingo <span>conceito acadêmico</span></div>
           </div>
           <div class="floating-recipe floating-recipe-one" aria-hidden="true"><span>🌮</span><strong>dia 3</strong><small>México</small></div>
@@ -82,14 +83,21 @@
     </section>
 
     <nav class="daybar" id="sabores" aria-label="Escolha um dos sete dias da campanha">
-      <div class="container daybar-heading"><div><span class="section-label">Seu próximo destino</span><h2>escolha seu sabor</h2></div><span class="swipe-hint">Deslize para explorar <span aria-hidden="true">↔</span></span></div>
+      <div class="container daybar-heading"><div><span class="section-label">Sua trilha pelo mundo</span><h2>uma lição, um novo sabor</h2></div><span class="swipe-hint">Arraste para explorar <span aria-hidden="true">↔</span></span></div>
+      <div class="container">
+        <div class="unit-banner" aria-label="Unidade de aprendizagem ilustrativa">
+          <div class="unit-symbol" aria-hidden="true">✦</div>
+          <div class="unit-copy"><strong>UNIDADE 1 · SABORES DO MUNDO</strong><span>Sete países, sete pratos e novos conhecimentos a cada etapa.</span></div>
+          <span id="journeyCount" class="unit-count">0/7 concluídas</span>
+        </div>
+      </div>
       <div class="container daybar-inner" id="dayTabs"></div>
     </nav>
 
     <section class="hero" id="topo" aria-labelledby="recipeTitle">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <span class="eyebrow" id="countryBadge">🇫🇷 Dia 1 · França</span>
+          <span class="eyebrow" id="countryBadge"><img class="flag-img flag-badge" id="countryFlag" src="assets/flags/fr.svg" alt="" aria-hidden="true"><span id="countryBadgeText">Dia 1 · França</span></span>
           <h2 id="recipeTitle">Frango Bourguignon</h2>
           <p class="hero-lead" id="recipeTagline">Um clássico francês em versão de frango.</p>
           <p class="hero-description" id="recipeDescription"></p>
@@ -104,7 +112,7 @@
           </div>
         </div>
         <div class="hero-art" role="img" aria-label="Prato ilustrado da receita selecionada">
-          <span id="heroFlag" class="art-flag" aria-hidden="true">🇫🇷</span>
+          <img id="heroFlag" class="art-flag flag-img" src="assets/flags/fr.svg" alt="" aria-hidden="true">
           <span id="heroFood" class="food-icon" aria-hidden="true">🍲</span>
           <span class="art-sticker"><small>receita do</small><strong id="heroArtDay">dia 1</strong></span>
         </div>
@@ -159,9 +167,10 @@
             <p class="lesson-lead">O sabor fica ainda melhor quando você aprende algo novo.</p>
             <div class="vocab-cards" id="vocabList"></div>
             <div class="speech">
-              <small>Experimente dizer</small>
+              <div class="speech-heading"><small>Experimente dizer</small><button type="button" id="speakPhrase" class="listen-button" aria-label="Ouvir a pronúncia da frase" title="Ouvir a pronúncia">◖)) <span>OUVIR</span></button></div>
               <p id="languagePhrase"></p>
               <em id="languageTranslation"></em>
+              <span id="speechNote" class="speech-note" role="status" aria-live="polite">Ouça a pronúncia no idioma selecionado.</span>
             </div>
           </div>
           <div class="quiz-card" aria-labelledby="quizTitle">
