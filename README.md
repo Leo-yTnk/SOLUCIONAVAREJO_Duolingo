@@ -17,6 +17,9 @@ Site estático de **demonstração acadêmica** da proposta de campanha **Swift 
 - Código DUOSABOR *demonstrativo*, que não concede descontos reais.
 - Hero principal com passaporte ilustrado, chamada para ação e progresso visível.
 - Seção **Uma viagem em 3 passos**, explicando como selecionar o destino, preparar a receita e aprender o idioma.
+- Navegação por **trilha de sete unidades**, com o estado de cada dia e seleção direta em todos os dispositivos.
+- **Bandeiras SVG reais, hospedadas no próprio repositório**, sem siglas no lugar de emojis incompatíveis.
+- Botão **Ouvir pronúncia** com a síntese de voz do dispositivo, caso oferecida pelo navegador; a qualidade da voz varia conforme idioma e plataforma.
 - Interface responsiva com navegação horizontal entre países e **atalhos inferiores** no celular.
 - Navegação acessível, contraste revisado e respeito ao movimento reduzido.
 - Verificações automáticas de sintaxe, conteúdo, **rolagem entre dias**, XP, fluxo de quiz e layouts de 320, 390, 768 e 1280 px.
@@ -43,14 +46,18 @@ A primeira versão derivou a hierarquia da página de receita no [Figma](https:/
 
 O redesign foi baseado nas diretrizes e nos artigos públicos sobre design do Duolingo:
 
-- **Verde da marca #58CC02**, utilizado como cor principal; roxo como apoio à identidade da campanha.
+- **Feather Green #58CC02** utilizado como cor principal; roxo em seções especiais. Controles com bordas de 2 px e sombra inferior para indicar que são pressionáveis.
+- **Trilha de unidades e estados claros** (lição atual, concluída, disponível), inspirados no produto educacional; a navegação continua livre nesta demonstração acadêmica.
 - **Títulos curtos e expressivos**, espaçamento consistente e hierarquia clara.
 - **Nunito do Google Fonts para títulos e corpo**: é a fonte substituta oficialmente recomendada quando as fontes proprietárias não estão disponíveis.
 - A Feather Bold é exclusiva do Duolingo segundo o próprio guia; o arquivo TTF fornecido e uma cópia não licenciada disponibilizada por terceiro **não são distribuídos nem carregados por este site**.
 - Elementos gráficos originais em CSS e emojis como apoio visual, sem imitar mascotes oficiais nem redistribuir assets temporários do Figma.
+- **Bandeiras locais (SVG 4:3)** adaptadas da biblioteca open source [flag-icons](https://github.com/lipis/flag-icons) de Panayiotis Lipiridis, distribuídas sob licença MIT; íntegra em [assets/flags/LICENSE](assets/flags/LICENSE). As bandeiras agora são imagens SVG, não emoji de país — assim não viram as letras 'FR', 'JP' etc. em plataformas sem fonte de bandeiras.
 - **Mobile-first:** hero adaptável, cards explicativos deslizáveis, seleção horizontal de países, áreas de toque amplas e barra de atalhos fixa.
 
-Referências: [Duolingo – Typography](https://design.duolingo.com/identity/typography); [Duolingo Blog – Core tabs redesign](https://blog.duolingo.com/core-tabs-redesign/); [Nunito – Google Fonts](https://fonts.google.com/specimen/Nunito).
+Referências: [Duolingo – Typography (documentação histórica)](https://design.duolingo.com/identity/typography); [Duolingo Blog – Core tabs redesign](https://blog.duolingo.com/core-tabs-redesign/); [Duolingo Blog – Home screen](https://blog.duolingo.com/new-duolingo-home-screen-design/); [Nunito – Google Fonts](https://fonts.google.com/specimen/Nunito).
+
+**Nota:** em novembro de 2026, alguns URLs antigos de `design.duolingo.com` redirecionam para o hub de design do blog. A revisão combinou o material de marca ainda indexado e os artigos oficiais de produto. A interface deste projeto é uma interpretação acadêmica: não reproduz os componentes oficiais nem depende de permissão de uso do mascote. A voz não é gravação oficial e pode não estar disponível para todos os idiomas.
 
 ## Executar e publicar
 
