@@ -1,7 +1,7 @@
 /* Conteúdo original de demonstração acadêmica, baseado no roteiro de sete sabores fornecido pelo grupo. */
 window.SABORES = [
   {
-    id: "franca", dia: 1, bandeira: "🇫🇷", pais: "França", idioma: "Francês",
+    id: "franca", codigo: "fr", dia: 1, bandeira: "🇫🇷", pais: "França", idioma: "Francês",
     titulo: "Frango Bourguignon", destaque: "Um clássico francês em versão de frango.",
     descricao: "Um ensopado reconfortante com cogumelos, cenoura, ervas e molho encorpado. Uma adaptação do preparo bourguignon tradicional.",
     cor: "#b999ec", escura: "#593f86", emoji: "🍲", tempo: "65 min", porcoes: "4 porções", dificuldade: "Intermediário",
@@ -36,7 +36,7 @@ window.SABORES = [
     resposta: 0, explicacao: "“Je voudrais” é uma forma educada de pedir algo; “poulet” significa frango."
   },
   {
-    id: "japao", dia: 2, bandeira: "🇯🇵", pais: "Japão", idioma: "Japonês",
+    id: "japao", codigo: "jp", dia: 2, bandeira: "🇯🇵", pais: "Japão", idioma: "Japonês",
     titulo: "Karaage de Frango", destaque: "Crocante por fora, suculento por dentro.",
     descricao: "Um jeito prático de servir o Karaague Swift com molho cítrico e gergelim. O empanado já vem pronto para assar.",
     cor: "#ffe4ac", escura: "#8a4e22", emoji: "🍗", tempo: "30 min", porcoes: "4 porções", dificuldade: "Fácil",
@@ -67,7 +67,7 @@ window.SABORES = [
     resposta: 0, explicacao: "“Oishii” (おいしい) descreve algo saboroso."
   },
   {
-    id: "mexico", dia: 3, bandeira: "🇲🇽", pais: "México", idioma: "Espanhol",
+    id: "mexico", codigo: "mx", dia: 3, bandeira: "🇲🇽", pais: "México", idioma: "Espanhol",
     titulo: "Tacos de Frango", destaque: "Uma explosão de sabores a cada mordida.",
     descricao: "Tortilhas, frango desfiado, tomate, milho e limão. Monte uma mesa colorida e deixe cada pessoa personalizar os tacos.",
     cor: "#ffd1b3", escura: "#9b4a2b", emoji: "🌮", tempo: "20 min", porcoes: "4 porções", dificuldade: "Fácil",
@@ -100,7 +100,7 @@ window.SABORES = [
     resposta: 1, explicacao: "“Pollo” é frango; “pescado” é peixe e “carne de res” é carne bovina."
   },
   {
-    id: "india", dia: 4, bandeira: "🇮🇳", pais: "Índia", idioma: "Inglês",
+    id: "india", codigo: "in", dia: 4, bandeira: "🇮🇳", pais: "Índia", idioma: "Inglês",
     titulo: "Frango Tikka Masala", destaque: "Especiarias que aquecem o coração.",
     descricao: "Cubos de frango marinados em iogurte e especiarias, finalizados em molho cremoso de tomate. Inspirado no tikka masala.",
     cor: "#ffcf97", escura: "#99541d", emoji: "🍛", tempo: "50 min", porcoes: "4 porções", dificuldade: "Intermediário",
@@ -133,7 +133,7 @@ window.SABORES = [
     resposta: 0, explicacao: "“Spice” significa especiaria. O inglês é uma escolha pedagógica, não o único idioma falado na Índia."
   },
   {
-    id: "italia", dia: 5, bandeira: "🇮🇹", pais: "Itália", idioma: "Italiano",
+    id: "italia", codigo: "it", dia: 5, bandeira: "🇮🇹", pais: "Itália", idioma: "Italiano",
     titulo: "Frango Cacciatore", destaque: "O sabor de uma cozinha italiana de família.",
     descricao: "Sobrecoxas douradas em um molho rústico de tomates, pimentão, cogumelos e ervas.",
     cor: "#d7edb0", escura: "#416c35", emoji: "🍅", tempo: "60 min", porcoes: "4 porções", dificuldade: "Intermediário",
@@ -166,7 +166,7 @@ window.SABORES = [
     resposta: 1, explicacao: "“Buon appetito!” equivale a “Bom apetite!”."
   },
   {
-    id: "tailandia", dia: 6, bandeira: "🇹🇭", pais: "Tailândia", idioma: "Tailandês",
+    id: "tailandia", codigo: "th", dia: 6, bandeira: "🇹🇭", pais: "Tailândia", idioma: "Tailandês",
     titulo: "Frango ao Curry Thai", destaque: "Cremoso, aromático e cheio de personalidade.",
     descricao: "Frango macio em leite de coco, curry e vegetais. A intensidade da pimenta fica por sua conta.",
     cor: "#c6efe4", escura: "#256b62", emoji: "🥥", tempo: "35 min", porcoes: "4 porções", dificuldade: "Fácil",
@@ -200,7 +200,7 @@ window.SABORES = [
     resposta: 1, explicacao: "“Gai” (ไก่) significa frango; “sawasdee” é uma saudação."
   },
   {
-    id: "portugal", dia: 7, bandeira: "🇵🇹", pais: "Portugal", idioma: "Português de Portugal",
+    id: "portugal", codigo: "pt", dia: 7, bandeira: "🇵🇹", pais: "Portugal", idioma: "Português de Portugal",
     titulo: "Frango ao Piri-píri", destaque: "Um final de viagem com bastante sabor.",
     descricao: "Filezinhos de frango envolvidos em um molho de piri-píri, alho, limão e páprica. Ajuste a picância ao seu gosto.",
     cor: "#ffc6cd", escura: "#923c4f", emoji: "🌶️", tempo: "35 min", porcoes: "4 porções", dificuldade: "Fácil",
