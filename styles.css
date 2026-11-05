@@ -509,3 +509,175 @@ section { scroll-margin-top: 78px; }
    A combinação anterior com scroll-padding somava dois deslocamentos. */
 html {scroll-padding-top:0;}
 @media(max-width:680px) {html {scroll-padding-top:0;}}
+
+
+/* V3 — bandeiras SVG reais + interface de unidades com affordances Duolingo. */
+:root {
+  --duo-green:#58cc02;
+  --duo-green-dark:#58a700;
+  --duo-mask:#89e219;
+  --duo-blue:#1cb0f6;
+  --duo-purple:#9069cd;
+  --duo-ink:#4b4b4b;
+  --duo-subtle:#777;
+  --duo-border:#e5e5e5;
+}
+.flag-img {
+  display:block; width:34px; height:26px; flex:none;
+  object-fit:cover; object-position:center;
+  border-radius:5px;
+  box-shadow:0 1px 3px #0000001c;
+  background:#fff;
+}
+.header-actions {gap:10px;}
+.header-country {
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 9px 6px 7px;
+  background:#fff;border:2px solid var(--duo-border);
+  border-radius:16px;color:var(--duo-ink);
+  font-size:13px;font-weight:900;white-space:nowrap;
+}
+.header-country .flag-img {width:31px;height:23px;}
+.passport-mini-flag {
+  display:grid;place-items:center;overflow:visible;
+  min-width:41px;min-height:34px;padding:5px;
+}
+.passport-mini-flag .flag-img {width:29px;height:22px;box-shadow:none;border-radius:3px;}
+.passport-stamps {gap:6px;}
+.passport-stamp {display:grid;place-items:center;flex:1 1 0;min-width:0;}
+.passport-stamp .flag-img {width:min(100%,30px);height:auto;aspect-ratio:4/3;box-shadow:0 1px 2px #0002;border-radius:3px;}
+.eyebrow {display:inline-flex;align-items:center;gap:8px;}
+.flag-badge {width:29px;height:22px;border-radius:4px;}
+.art-flag.flag-img {position:absolute;width:76px;height:57px;left:7%;top:6%;border:5px solid white;border-radius:12px;box-shadow:0 7px 12px #0002;transform:rotate(-13deg);object-fit:cover;}
+.daybar {background:#fff;position:relative;z-index:1;}
+.daybar-heading {padding-block:34px 17px;}
+.daybar-heading h2 {max-width:680px;font-size:clamp(28px,3.5vw,40px);}
+.unit-banner {
+  background:#9069cd;color:#fff;border-radius:22px;
+  display:flex;align-items:center;gap:15px;
+  padding:17px 21px;box-shadow:0 5px #694a9d;
+  border:2px solid #9b79d3;
+}
+.unit-symbol {width:49px;height:49px;border-radius:15px;flex:none;display:grid;place-items:center;background:#ffffff28;font-size:32px;}
+.unit-copy {flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;}
+.unit-copy strong {font-size:14px;letter-spacing:.035em;font-weight:900;line-height:1.3;}
+.unit-copy span {font-size:13px;opacity:.96;line-height:1.4;font-weight:700;}
+.unit-count {background:#ffffff24;border:1px solid #ffffff4d;border-radius:999px;padding:8px 13px;font-size:12px;font-weight:900;white-space:nowrap;}
+.daybar-inner {padding-block:22px 26px;gap:11px;scroll-padding-inline:10px;}
+.day-tab {
+  min-height:86px;
+  min-width:143px;
+  padding:11px 13px;
+  flex:1 0 143px;
+  border:2px solid var(--duo-border);border-radius:19px;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 5px var(--duo-border);
+  color:var(--duo-ink);background:white;
+  transition:transform .15s ease,background .15s ease,border-color .15s ease,box-shadow .15s ease;
+}
+.day-tab:hover {background:#f6fff0;border-color:#b3e895;transform:translateY(-2px);}
+.day-tab:active {transform:translateY(3px);box-shadow:0 2px var(--duo-border);}
+.day-tab[aria-current="true"] {background:#ecfbdc;border-color:var(--duo-green);box-shadow:0 5px var(--duo-green-dark);color:#285b0b;}
+.day-tab.completed {background:#f7fff2;border-color:#b9e7a8;box-shadow:0 5px #9bd17b;}
+.tab-flag-wrap {
+  width:47px;height:47px;flex:none;
+  border-radius:15px;display:grid;place-items:center;
+  background:#f7f7f7;border:2px solid #eeeeee;
+  padding:4px;
+}
+.day-tab[aria-current="true"] .tab-flag-wrap {background:#fff;border-color:#c6edaf;}
+.tab-flag.flag-img {width:35px;height:27px;box-shadow:0 1px 2px #0002;border-radius:4px;}
+.tab-text {display:block;text-align:left;min-width:0;flex:1;font-weight:800;}
+.tab-text strong {display:block;font-size:14px;font-weight:900;line-height:1.15;}
+.tab-text small {display:block;font-size:12px;font-weight:900;opacity:1;margin-top:2px;line-height:1.2;}
+.tab-state {display:block;font-size:9.8px;font-weight:900;color:#888;margin-top:4px;line-height:1.1;white-space:nowrap;}
+.day-tab[aria-current="true"] .tab-state {color:#3c9209;}
+.day-tab.completed .tab-state {color:#4b9b17;}
+.tab-check {margin-left:0;min-width:0;color:#58a700;}
+.lesson .vocab-card {
+  background:#ffffff12;border:2px solid #ffffff3a;
+  border-radius:17px;
+  padding:15px 18px;
+}
+.speech-heading {display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:5px;}
+.listen-button {
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  color:#fff;background:var(--duo-blue);
+  border:2px solid var(--duo-blue);
+  box-shadow:0 4px #1899d6;
+  min-height:38px;padding:7px 13px;border-radius:13px;
+  font:900 12px/1.2 'Nunito',sans-serif;
+  transition:transform .15s,box-shadow .15s;
+}
+.listen-button:hover:not(:disabled) {background:#35bafb;}
+.listen-button:active,.listen-button.speaking {transform:translateY(2px);box-shadow:0 2px #1899d6;}
+.listen-button:disabled {background:#c6c6c6;border-color:#c6c6c6;box-shadow:0 4px #a5a5a5;cursor:default;}
+.speech-note {display:block;font-size:11px;line-height:1.5;color:#888;margin-top:11px;}
+.speech {border-radius:20px 20px 20px 6px;border:2px solid #ffffff;}
+.speech small {letter-spacing:.045em;}
+.speech p {font-size:clamp(18px,2vw,22px);}
+.quiz-card {border:2px solid #e6e6e6;box-shadow:0 5px #382555;}
+.quiz-option {
+  border-color:var(--duo-border);border-radius:15px;
+  box-shadow:0 4px #dadada;
+  transition:background .14s ease,border-color .14s ease,transform .14s ease,box-shadow .14s ease;
+}
+.quiz-option:hover:not(:disabled) {border-color:var(--duo-blue);background:#effaff;}
+.quiz-option.selected {border-color:var(--duo-blue);box-shadow:0 4px #84d8ff;}
+.quiz-option.correct {border-color:var(--duo-green);box-shadow:0 4px #9ddb73;}
+.quiz-option.incorrect {border-color:#ff4b4b;box-shadow:0 4px #f3a2a2;}
+.quiz-option:active:not(:disabled) {transform:translateY(3px);box-shadow:0 1px #dadada;}
+.stamp-symbol {width:54px;height:45px;display:grid;place-items:center;border-radius:13px;background:#ffffff18;}
+.stamp-flag.flag-img {width:44px;height:33px;object-fit:cover;border-radius:5px;}
+.stamp-item:not(.earned) .stamp-flag {filter:grayscale(1);opacity:.56;}
+.stamp-item.earned .stamp-symbol {background:#dcf8c8;}
+.stamp-item.earned .stamp-flag {filter:none;opacity:1;}
+.stamp-item.active {outline:2px solid #eedaff;outline-offset:2px;}
+.button-primary {background:var(--duo-green);box-shadow:0 4px var(--duo-green-dark);color:#204e00;}
+.button-primary:active {transform:translateY(3px);box-shadow:0 1px var(--duo-green-dark);}
+.button-outline,.button-light {border-color:var(--duo-border);color:var(--duo-ink);}
+.button-light:hover,.button-outline:hover {background:#f8f8f8;}
+.quiz-feedback.ok {background:#e4fbd7;color:#397817;}
+.quiz-feedback.bad {background:#fff0ee;color:#c13b3b;}
+@media(max-width:900px) {
+  .unit-banner {gap:12px;}
+  .unit-count {padding:7px 10px;}
+  .day-tab {flex:0 0 150px;}
+}
+@media(max-width:680px) {
+  .header-actions {gap:5px;}
+  .header-country {padding:6px;border-radius:11px;}
+  .header-country .flag-img {width:28px;height:21px;}
+  .header-country span {display:none;}
+  .daybar-heading {padding-block:26px 14px;}
+  .daybar-heading h2 {font-size:29px;max-width:255px;line-height:1.09;}
+  .unit-banner {border-radius:17px;padding:12px 12px;gap:10px;}
+  .unit-symbol {width:38px;height:38px;font-size:24px;border-radius:12px;}
+  .unit-copy strong {font-size:11px;}
+  .unit-copy span {font-size:11px;line-height:1.35;}
+  .unit-count {font-size:10px;padding:6px 8px;}
+  .daybar-inner {gap:9px;padding-block:20px 24px;scroll-padding-inline:15px;}
+  .day-tab {min-width:153px;flex:0 0 153px;min-height:82px;padding:9px 10px;border-radius:17px;}
+  .tab-flag-wrap {width:43px;height:43px;padding:3px;border-radius:13px;}
+  .tab-flag.flag-img {width:34px;height:26px;}
+  .tab-text strong {font-size:13px;}
+  .tab-text small {font-size:12px;}
+  .tab-state {font-size:9px;}
+  .art-flag.flag-img {width:49px;height:38px;left:15%;top:3%;border:3px solid #fff;border-radius:8px;transform:rotate(-12deg);}
+  .flag-badge {width:27px;height:20px;}
+  .passport-stamps {gap:5px;}
+  .passport-stamp .flag-img {width:min(100%,26px);}
+  .passport-mini-flag .flag-img {width:27px;height:20px;}
+  .listen-button {padding:7px 10px;font-size:11px;}
+  .stamp-symbol {width:50px;height:39px;}
+  .stamp-flag.flag-img {width:41px;height:31px;}
+  .campaign-layout {padding-top:25px;}
+  .passport-showcase {min-height:142px;height:142px;}
+  .how-section {padding-top:30px;padding-bottom:28px;}
+}
+@media(max-width:360px) {
+  .header-country .flag-img {width:24px;height:18px;}
+  .header-country {padding:5px;}
+  .unit-count {font-size:9px;}
+  .daybar-heading h2 {font-size:26px;}
+}
