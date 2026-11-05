@@ -1,0 +1,159 @@
+/* Padrões globais de UI — Swift × Duolingo, proposta acadêmica.
+   Carregado depois de styles.css. Superfícies = borda; controles = affordance.
+   Mantenha tokens e overrides de padronização neste arquivo. */
+
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN SYSTEM · versão 4
+   Superfícies = apenas bordas. Elevação = apenas controles clicáveis.
+   Sem bordas internas costuradas; escala de raios e espaços única.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --ds-surface: #fff;
+  --ds-page: #f7f7f7;
+  --ds-border: #e5e5e5;
+  --ds-border-purple: #decdeb;
+  --ds-border-on-dark: #ffffff52;
+  --ds-radius-card: 22px;
+  --ds-radius-card-sm: 18px;
+  --ds-radius-control: 15px;
+  --ds-radius-small: 12px;
+  --ds-gap: 18px;
+  --ds-text: #3c3c3c;
+  --ds-muted: #737373;
+  --page: var(--ds-page);
+  --edge: var(--ds-border);
+  --ink: var(--ds-text);
+  --muted: var(--ds-muted);
+}
+body {background:var(--ds-page);color:var(--ds-text);}
+.container {width:min(1100px,calc(100% - 40px));}
+h1,h2,h3,h4 {letter-spacing:-.025em;}
+.section-label {letter-spacing:.10em;}
+.site-header {background:#fffc;border-bottom:2px solid var(--ds-border);}
+.streak,.xp-pill,.header-country,.eyebrow,.chip,.campaign-kicker,
+.unit-count,.campaign-progress .progress-track,.progress-track {
+  box-shadow:none;
+}
+.streak,.xp-pill,.header-country,.eyebrow,.campaign-kicker {
+  border:2px solid var(--ds-border);border-radius:999px;
+}
+.header-country {border-radius:var(--ds-radius-control);}
+.chip {border:1px solid #0000001b;border-radius:999px;}
+.logo-icon {box-shadow:none;border:2px solid #43a500;}
+
+/* Uma superfície informativa não deve parecer um botão. */
+.product-banner,.panel,.how-card,.quiz-card,.speech,.reward,
+.unit-banner,.passport-cover,.floating-recipe,.stamps-section,
+.stamp-item,.vocab-card,.safety,.toast {
+  box-shadow:none;
+}
+.product-banner,.panel,.how-card,.quiz-card,.speech,
+.reward,.unit-banner,.passport-cover,.floating-recipe,.stamps-section {
+  border-width:2px;
+  border-style:solid;
+  border-radius:var(--ds-radius-card);
+}
+.product-banner,.panel,.how-card,.quiz-card,.floating-recipe {
+  border-color:var(--ds-border);
+}
+.product-banner,.how-card,.quiz-card {background:var(--ds-surface);}
+.prep-panel {background:#f5eafc;border-color:var(--ds-border-purple);}
+.prep-panel .panel-header {background:transparent;}
+.how-card {position:relative;padding:22px 23px;min-height:100%;}
+.how-card::after,.passport-cover::after {content:none;display:none;}
+.how-card h3 {margin-bottom:9px;}
+.how-grid,.recipe-grid {gap:var(--ds-gap);}
+.panel {overflow:hidden;}
+.panel-header {padding:24px 25px 18px;}
+.ingredient-list {padding:0 25px 26px;}
+.ingredient-counter {margin:0 25px 24px;}
+.step-list {padding:0 25px 26px;}
+.product-banner {padding:19px 23px;margin-bottom:29px;}
+.safety {border:2px solid #f3deb0;border-radius:var(--ds-radius-small);}
+
+/* Elementos decorativos do hero também são planos, sem cartões suspensos. */
+.passport-cover {border-color:#ded8e7;border-width:2px;box-shadow:none;}
+.passport-cover-top,.passport-foot {z-index:1;}
+.passport-foot {border-top:2px solid #e2d8ed;}
+.passport-plate {box-shadow:none;outline:2px solid #e9dbef;outline-offset:-2px;}
+.passport-mini-flag,.passport-stamp .flag-img,.flag-img {box-shadow:none;}
+.campaign-kicker {background:#fff;border-color:#d5eac9;}
+.campaign-copy h1 span:last-child {box-shadow:none;border:2px solid #3c9a0f;}
+.passport-showcase::before,.hero-art::before,.hero-art::after {box-shadow:none;}
+.hero-art::after {outline:2px solid #f5e8d6;outline-offset:-9px;}
+.art-sticker {border:2px solid #fff;box-shadow:none;border-radius:var(--ds-radius-control);}
+.floating-recipe {border-color:#e8e8e8;border-radius:var(--ds-radius-card-sm);padding:11px 17px;}
+.unit-banner {border-color:#ad8bd9;padding:18px 20px;}
+.unit-symbol {border-radius:var(--ds-radius-small);}
+.flag-img {border-radius:5px;}
+.art-flag.flag-img {box-shadow:none;}
+
+/* Consistência no ambiente de estudo: painéis de borda sólida. */
+.vocab-card {border:2px solid var(--ds-border-on-dark);border-radius:var(--ds-radius-card-sm);}
+.speech {border-color:#dcd1e8;border-radius:var(--ds-radius-card);}
+.quiz-card {border-color:var(--ds-border);padding:24px;}
+.quiz-mini-track {border-color:var(--ds-border);}
+.reward {border-color:#a6d889;padding:24px 20px;}
+.reward-code {border:2px solid #d9d0e2;border-radius:var(--ds-radius-small);}
+.stamps-section {border:2px solid var(--ds-border-on-dark);padding:23px;}
+.stamp-item {border:2px solid #ffffff61;border-radius:var(--ds-radius-card-sm);}
+.stamp-item.earned {border:2px solid #a6ea78;box-shadow:none;}
+.stamp-item:hover {border-color:#fff;}
+.toast {border-color:#ffffff45;border-radius:var(--ds-radius-control);}
+
+/* Apenas controles interativos têm profundidade de 4 px. */
+.button,.day-tab,.quiz-option,.listen-button {
+  border-radius:var(--ds-radius-control);
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease,background .16s ease;
+}
+.button {min-height:48px;padding:12px 19px;}
+.button-primary,.button-campaign {box-shadow:0 4px var(--duo-green-dark);}
+.button-campaign {box-shadow:0 4px #d4eabd;}
+.button-light,.button-outline,.button-campaign-secondary {
+  background:#fff;border:2px solid var(--ds-border);
+  color:var(--ds-text);
+  box-shadow:0 4px #d8d8d8;
+}
+.button-campaign-secondary {background:#ffffff45;color:#244a12;border-color:#ffffff9c;box-shadow:0 4px #4fa918;}
+.button:active:not(:disabled) {transform:translateY(3px);}
+.button-light:active:not(:disabled),.button-outline:active:not(:disabled) {box-shadow:0 1px #d8d8d8;}
+.button-primary:active:not(:disabled) {box-shadow:0 1px var(--duo-green-dark);}
+.button-campaign:active:not(:disabled) {box-shadow:0 1px #d4eabd;}
+.button-campaign-secondary:active:not(:disabled) {box-shadow:0 1px #4fa918;}
+.day-tab {border-radius:var(--ds-radius-card-sm);box-shadow:0 4px var(--ds-border);}
+.day-tab[aria-current="true"] {box-shadow:0 4px var(--duo-green-dark);}
+.day-tab.completed {box-shadow:0 4px #9bd17b;}
+.day-tab:active {box-shadow:0 1px var(--ds-border);}
+.quiz-option {border:2px solid var(--ds-border);box-shadow:0 4px #dadada;}
+.quiz-option.selected {border-color:var(--duo-blue);box-shadow:0 4px #84d8ff;}
+.quiz-option.correct {border-color:var(--duo-green);box-shadow:0 4px #9ddb73;}
+.quiz-option.incorrect {border-color:#ff4b4b;box-shadow:0 4px #f3a2a2;}
+.quiz-option:active:not(:disabled) {box-shadow:0 1px #dadada;}
+.listen-button {border-radius:var(--ds-radius-control);}
+.verify-answer:disabled,.button:disabled {box-shadow:none;}
+.mobile-quickbar {box-shadow:none;border-top:2px solid var(--ds-border);}
+.tab-flag-wrap {border-radius:var(--ds-radius-small);}
+
+/* Espaçamento e raios compactos, com a mesma hierarquia no celular. */
+@media (max-width:680px) {
+  .container {width:min(1100px,calc(100% - 30px));}
+  .campaign-actions {gap:10px;}
+  .how-grid,.recipe-grid,.lesson-layout {gap:14px;}
+  .how-card,.product-banner,.panel,.quiz-card,.speech,.unit-banner,
+  .passport-cover,.stamps-section {border-radius:var(--ds-radius-card-sm);}
+  .how-card {padding:18px 19px;}
+  .product-banner {padding:16px 18px;margin-bottom:23px;}
+  .panel-header {padding:20px 19px 15px;}
+  .ingredient-list {padding:0 19px 20px;}
+  .ingredient-counter {margin:0 19px 20px;}
+  .step-list {padding:0 19px 22px;}
+  .quiz-card {padding:19px;}
+  .stamps-section {padding:18px 15px;}
+  .unit-banner {padding:13px;}
+  .day-tab {border-radius:var(--ds-radius-control);}
+  .button,.quiz-option,.listen-button {border-radius:var(--ds-radius-control);}
+  .mobile-quickbar {padding-inline:15px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .button,.quiz-option,.day-tab,.listen-button {transition:none;}
+}
