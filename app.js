@@ -44,11 +44,18 @@
     timer = window.setTimeout(function () { node.classList.remove("show"); }, 2900);
   }
 
+  function flagHtml(r, className) {
+    // SVGs locais: não dependem do suporte do sistema a emojis de bandeiras.
+    return '<img class="flag-img ' + esc(className || '') +
+      '" src="assets/flags/' + esc(r.codigo) + '.svg" alt="" aria-hidden="true" decoding="async">';
+  }
+
   function progress() {
     var n = concluidas.length;
     $("progressText").textContent = n + " / 7";
     $("headerCount").textContent = "⭐ " + n + "/7 lições";
     $("xpCount").textContent = "⚡ " + (n * 20) + " XP";
+    $("journeyCount").textContent = n + "/7 concluídas";
     $("progressTrack").setAttribute("aria-valuenow", String(n));
     $("progressFill").style.width = (n / 7 * 100) + "%";
   }
@@ -57,11 +64,16 @@
     $("dayTabs").innerHTML = receitas.map(function (r) {
       var selected = r.id === ativa.id;
       var completed = concluidas.includes(r.id);
-      return '<button type="button" class="day-tab" data-day="' + esc(r.id) + '" aria-current="' + selected + '" aria-label="Dia ' +
-        r.dia + ', ' + esc(r.pais) + (completed ? ', lição concluída' : "") + '">' +
-        '<span class="tab-flag" aria-hidden="true">' + r.bandeira + '</span>' +
-        '<span class="tab-text">Dia ' + r.dia + '<small>' + esc(r.pais) + '</small></span>' +
-        (completed ? '<span class="tab-check" aria-hidden="true">✓</span>' : '') + '</button>';
+      var state = completed ? 'Concluído' : (selected ? 'Você está aqui' : 'Explorar');
+      return '<button type="button" class="day-tab' +
+        (completed ? ' completed' : '') + '" data-day="' + esc(r.id) +
+        '" aria-current="' + selected + '" aria-label="Dia ' + r.dia + ', ' +
+        esc(r.pais) + (completed ? ', lição concluída' : '') + '">' +
+        '<span class="tab-flag-wrap">' + flagHtml(r, 'tab-flag') + '</span>' +
+        '<span class="tab-text"><strong>Dia ' + r.dia + '</strong><small>' +
+        esc(r.pais) + '</small><span class="tab-state">' + state + '</span></span>' +
+        '<span class="tab-check" aria-hidden="true">' +
+        (completed ? '✓' : (selected ? '●' : '')) + '</span></button>';
     }).join("");
   }
 
@@ -88,9 +100,10 @@
         '" aria-label="' + esc(r.pais) + ', dia ' + r.dia +
         (earned ? ', lição concluída' : ', lição pendente') +
         (isCurrent ? ', selecionado' : '') + '">' +
-        '<span class="stamp-symbol" aria-hidden="true">' + (earned ? r.bandeira : '☆') + '</span>' +
+        '<span class="stamp-symbol">' + flagHtml(r, 'stamp-flag') + '</span>' +
         '<span class="stamp-name">' + esc(r.pais) + '</span>' +
-        '<span class="stamp-state">' + (earned ? 'Concluído ✓' : 'Dia ' + r.dia) + '</span></button>';
+        '<span class="stamp-state">' + (earned ? 'Concluído ✓' : 'Dia ' + r.dia) +
+        '</span></button>';
     }).join("");
   }
 
@@ -112,14 +125,17 @@
   function renderHero(r) {
     document.documentElement.style.setProperty("--accent", r.cor);
     document.documentElement.style.setProperty("--accent-ink", r.escura);
-    $("countryBadge").textContent = r.bandeira + " Dia " + r.dia + " · " + r.pais;
+    $("countryBadgeText").textContent = "Dia " + r.dia + " · " + r.pais;
+    $("countryFlag").src = "assets/flags/" + r.codigo + ".svg";
+    $("headerFlag").src = "assets/flags/" + r.codigo + ".svg";
+    $("headerCountryName").textContent = r.pais;
     $("recipeTitle").textContent = r.titulo;
     $("recipeTagline").textContent = r.destaque;
     $("recipeDescription").textContent = r.descricao;
     $("recipeTime").textContent = "⏱️ " + r.tempo;
     $("recipePortions").textContent = "🍽️ " + r.porcoes;
     $("recipeDifficulty").textContent = "✨ " + r.dificuldade;
-    $("heroFlag").textContent = r.bandeira;
+    $("heroFlag").src = "assets/flags/" + r.codigo + ".svg";
     $("heroFood").textContent = r.emoji;
     $("heroArtDay").textContent = "dia " + r.dia;
     document.querySelector(".hero-art").setAttribute("aria-label", "Prato " + r.titulo + ", tema " + r.pais);
@@ -153,6 +169,11 @@
 
   var langs = { franca: "fr", japao: "ja", mexico: "es", india: "en", italia: "it", tailandia: "th", portugal: "pt-PT" };
 
+  var speechLocales = {
+    franca: "fr-FR", japao: "ja-JP", mexico: "es-MX", india: "en-IN",
+    italia: "it-IT", tailandia: "th-TH", portugal: "pt-PT"
+  };
+
   function renderLesson(r) {
     $("lessonTitle").textContent = "Um pouco de " + r.idioma.toLowerCase() + "...";
     $("quizDay").textContent = String(r.dia);
@@ -163,6 +184,9 @@
     $("languagePhrase").textContent = r.frase;
     $("languagePhrase").setAttribute("lang", langs[r.id]);
     $("languageTranslation").textContent = r.traducao;
+    $("speechNote").textContent = "Toque em ouvir para escutar a frase.";
+    $("speakPhrase").disabled = !("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window);
+    $("speakPhrase").classList.remove("speaking");
     renderQuiz();
   }
 
@@ -195,6 +219,7 @@
     var next = receitas.find(function (r) { return r.id === id; });
     if (!next) next = receitas[0];
     ativa = next;
+    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
     selectedAnswer = null;
     renderTabs();
     centerActiveDay();
@@ -214,6 +239,38 @@
     }
     if (scroll) scrollToRecipe();
   }
+
+  $("speakPhrase").addEventListener("click", function () {
+    if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
+      $("speechNote").textContent = "Seu navegador não oferece síntese de voz.";
+      return;
+    }
+    var text = ativa.frase.replace(/\s*\([^)]*\)/g, "").trim();
+    var locale = speechLocales[ativa.id] || "pt-BR";
+    window.speechSynthesis.cancel();
+    var utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = locale;
+    utterance.rate = 0.86;
+    utterance.pitch = 1;
+    var voices = window.speechSynthesis.getVoices();
+    var voice = voices.find(function (v) { return v.lang.toLowerCase() === locale.toLowerCase(); }) ||
+      voices.find(function (v) { return v.lang.toLowerCase().startsWith(locale.slice(0, 2).toLowerCase()); });
+    if (voice) utterance.voice = voice;
+    var button = $("speakPhrase");
+    utterance.onstart = function () {
+      button.classList.add("speaking");
+      $("speechNote").textContent = "Reproduzindo pronúncia gerada pelo dispositivo…";
+    };
+    utterance.onend = function () {
+      button.classList.remove("speaking");
+      $("speechNote").textContent = "Pratique repetindo a frase em voz alta!";
+    };
+    utterance.onerror = function () {
+      button.classList.remove("speaking");
+      $("speechNote").textContent = "Áudio indisponível. Tente novamente ou leia a frase.";
+    };
+    window.speechSynthesis.speak(utterance);
+  });
 
   $("dayTabs").addEventListener("click", function (event) {
     var tab = event.target.closest("button[data-day]");
