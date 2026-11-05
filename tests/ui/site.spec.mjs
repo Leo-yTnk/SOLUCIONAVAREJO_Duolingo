@@ -120,3 +120,28 @@ test('quiz exige verificar, permite tentar de novo e entrega XP uma única vez',
   await page.locator('#rewardNextDay').click();
   await expect(page.locator('#recipeTitle')).toHaveText('Frango Tikka Masala');
 });
+
+test('todas as bandeiras são SVG reais e acompanham o país selecionado', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const flagImages = page.locator('img.flag-img');
+  await expect(flagImages).toHaveCount(18);
+  const loaded = await flagImages.evaluateAll(images => images.every(image =>
+    image.complete && image.naturalWidth > 0 && /assets\/flags\/[a-z]{2}\.svg$/.test(image.getAttribute('src'))));
+  expect(loaded).toBe(true);
+  await page.locator('#dayTabs [data-day="japao"]').click();
+  await expect(page.locator('#countryFlag')).toHaveAttribute('src', 'assets/flags/jp.svg');
+  await expect(page.locator('#heroFlag')).toHaveAttribute('src', 'assets/flags/jp.svg');
+  await expect(page.locator('#headerFlag')).toHaveAttribute('src', 'assets/flags/jp.svg');
+  await expect(page.locator('#countryBadgeText')).toHaveText('Dia 2 · Japão');
+  await expect(page.locator('.day-tab[aria-current="true"] img.flag-img')).toHaveAttribute('src', 'assets/flags/jp.svg');
+});
+
+test('botão de pronúncia está disponível sem impedir a miniatividade', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/?dia=franca');
+  await expect(page.locator('#speakPhrase')).toBeVisible();
+  await expect(page.locator('#speakPhrase')).toBeEnabled();
+  await expect(page.locator('#languagePhrase')).toHaveAttribute('lang', 'fr');
+  await expect(page.locator('#verifyAnswer')).toBeDisabled();
+});
