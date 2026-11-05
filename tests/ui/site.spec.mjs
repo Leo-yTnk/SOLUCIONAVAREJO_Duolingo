@@ -125,7 +125,7 @@ test('todas as bandeiras são SVG reais e acompanham o país selecionado', async
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   const flagImages = page.locator('img.flag-img');
-  await expect(flagImages).toHaveCount(18);
+  await expect(flagImages).toHaveCount(25);
   const loaded = await flagImages.evaluateAll(images => images.every(image =>
     image.complete && image.naturalWidth > 0 && /assets\/flags\/[a-z]{2}\.svg$/.test(image.getAttribute('src'))));
   expect(loaded).toBe(true);
