@@ -17,6 +17,13 @@ assert.deepEqual(Array.from(dias, (d) => d.titulo), [
   "Frango ao Piri-píri"
 ]);
 assert.equal(new Set(dias.map((d) => d.id)).size, 7, "IDs únicos");
+assert.deepEqual(Array.from(dias, (d) => d.codigo), ["fr","jp","mx","in","it","th","pt"], "códigos ISO corretos");
+dias.forEach(d => {
+  const svg = fs.readFileSync(root + "/assets/flags/" + d.codigo + ".svg", "utf8");
+  assert.match(svg, /<svg[\\s>]/);
+  assert.match(svg, /<\\/svg>/);
+});
+assert.match(fs.readFileSync(root + "/assets/flags/LICENSE", "utf8"), /MIT License/);
 dias.forEach((d, i) => {
   assert.equal(d.dia, i + 1);
   assert.match(d.produtoUrl, /^https:\/\/www\.swift\.com\.br\//);
@@ -39,6 +46,11 @@ assert.match(css, /mobile-quickbar/, "atalhos de celular");
 assert.match(html, /id="como-funciona"/, "seção explicativa");
 assert.match(html, /id="sabores"/, "navegação para os sete dias");
 assert.match(html, /id="heroArtDay"/, "carimbo do dia no hero");
+assert.match(html, /class="passport-stamps"/);
+assert.match(html, /src="assets\\/flags\\/fr\\.svg"/);
+assert.match(html, /id="speakPhrase"/);
+assert.match(html, /id="journeyCount"/);
+assert.match(html, /id="headerFlag"/);
 assert.match(html, /id="progressTrack"/, "progresso");
 const app = fs.readFileSync(root + "/app.js", "utf8");
 assert.match(app, /centerActiveDay/, "rolagem horizontal mobile");
